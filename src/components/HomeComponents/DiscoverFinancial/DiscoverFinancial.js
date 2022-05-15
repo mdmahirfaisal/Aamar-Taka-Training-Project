@@ -8,10 +8,9 @@ const DiscoverFinancial = () => {
         <>
             <div className='max-w-[1200px] mx-auto pt-16'>
                 <h2 className='text-[2vw] text-left'>Discover Your Financial Options!</h2>
-                <div className="flex items-">
-
-                    <div className=" grid grid-cols-1 content-start pt-10 text-left">
-                        <div className='self-start flex items-center gap-4 mt-5'>
+                <div className="flex container">
+                    <div className=" flex flex-col  justify-around content-start text-left">
+                        <div className='flex items-center gap-4 mt-5'>
                             <HiLightBulb color='#e5bf23' size="70px" />
                             <div>
                                 <h5 className='text-[#595959] text-xl'>Experience</h5>
@@ -19,7 +18,7 @@ const DiscoverFinancial = () => {
                             </div>
                         </div>
 
-                        <div className='self-center flex items-center gap-4 mt-5'>
+                        <div className='flex items-center gap-4 mt-5'>
                             <FaHandshake color='#d19a6e' size="60px" />
                             <div>
                                 <h5 className='text-[#595959] text-xl'>Reliability</h5>
@@ -27,7 +26,7 @@ const DiscoverFinancial = () => {
                             </div>
                         </div>
 
-                        <div className='self-end flex items-center gap-4 mt-5'>
+                        <div className='flex items-center gap-4 mt-5'>
                             <GiSpeedometer color='#dd6140' size="60px" />
                             <div>
                                 <h5 className='text-[#595959] text-xl'>Fastest & Hassle Free</h5>
@@ -46,18 +45,18 @@ const DiscoverFinancial = () => {
 
             {/* --- --- --- */}
             <div className="bg-[#0ab9f2]">
-                <div className="max-w-[1200px] py-5 mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
+                <div className="max-w-[1200px] container py-5 mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
                     <div className="border-l-4 border-white md:my-8 text-left pl-5 text-white">
                         <h5 className='text-2xl md:text-3xl font-bold'>250 M+</h5>
                         <p className='text-xl md:text-2xl '>CORE LOAN DISBURSED</p>
                     </div>
                     <div className="border-l-4 border-white md:my-8 text-left pl-5 text-white">
-                        <h5 className='text-2xl md:text-3xl font-bold'>250 M+</h5>
-                        <p className='text-xl md:text-2xl'>CORE LOAN DISBURSED</p>
+                        <h5 className='text-2xl md:text-3xl font-bold'>1.5 K+</h5>
+                        <p className='text-xl md:text-2xl'>CREDIT CARDS DISBURSED</p>
                     </div>
                     <div className="border-l-4 border-white md:my-8 text-left pl-5 text-white">
-                        <h5 className='text-2xl md:text-3xl font-bold'>250 M+</h5>
-                        <p className='text-xl md:text-2xl'>CORE LOAN DISBURSED</p>
+                        <h5 className='text-2xl md:text-3xl font-bold'>45 K+</h5>
+                        <p className='text-xl md:text-2xl'>HAPPY CUSTOMERS</p>
                     </div>
                 </div>
             </div>
@@ -66,7 +65,7 @@ const DiscoverFinancial = () => {
 
             <div className="bg-[#f4f9fc]">
                 <div className="max-w-[1200px] mx-auto">
-                    <div className="grid grid-cols-12 gap-3 py-8 whatPeopleBg">
+                    <div className="grid grid-cols-12 gap-3 py-8 whatPeopleBg container">
                         <div className="col-span-12 md:col-span-4 self-center ">
                             <h5 className='text-3xl md:text-5xl text-left '>What <span className='text-[#3e3c3c] font-medium'>People </span> said about <br />
                                 <span className='text-[#ecb400] font-semibold'>our service*</span>

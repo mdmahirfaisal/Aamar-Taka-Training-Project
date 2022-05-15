@@ -24,7 +24,7 @@ const Header = () => {
         <div className='h-[92vh] bg-[#1b5f8d] grid place-items-center'>
             <div className="max-w-[1200px] mx-auto ">
                 <h2 className='max-w-[1000px] mx-auto text-[3vw] text-white mb-10'>Compare Rates, Check Eligibility & Apply</h2>
-                <div className="grid grid-cols-5 gap-1">
+                <div className="grid grid-cols-5 gap-1 container">
 
                     <div className="header-card-container">
                         <Image src={loan} alt="Image" className=" header-card-image" />
@@ -69,8 +69,6 @@ const Header = () => {
                             <a href=""><MdOutlinePriceChange color='rgb(118, 193, 14)' size="28px" /> Price Bond</a>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

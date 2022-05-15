@@ -6,6 +6,7 @@ import NavigationBar from '../components/SharedComponents/NavigationBar/Navigati
 import DiscoverFinancial from '../components/HomeComponents/DiscoverFinancial/DiscoverFinancial'
 import Footer from '../components/SharedComponents/Footer/Footer'
 import { RiArrowUpSLine } from 'react-icons/ri'
+import Subscribe from '../components/HomeComponents/Subscribe/Subscribe'
 
 
 
@@ -41,6 +42,7 @@ export default function Home() {
         <Header />
         <BestDeal />
         <DiscoverFinancial />
+        <Subscribe />
         <Footer />
       </main>
     </div>
