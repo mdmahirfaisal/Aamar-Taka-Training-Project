@@ -35,6 +35,7 @@ a {
 }
 
 .header-card-overlay {
+  padding-top: 15px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -62,4 +63,11 @@ a {
 
 .header-card-container:hover .header-card-overlay {
   opacity: 1;
+}
+
+/// out service style
+.whatPeopleBg {
+  height: 40vh;
+  background-image: url("https://www.aamartaka.com/images/right-quote.png");
+  background-repeat: no-repeat, repeat;
 }

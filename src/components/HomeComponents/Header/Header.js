@@ -23,7 +23,7 @@ const Header = () => {
     return (
         <div className='h-[92vh] bg-[#1b5f8d] grid place-items-center'>
             <div className="max-w-[1200px] mx-auto ">
-                <h2 className='max-w-[1000px] mx-auto text-4xl md:text-5xl xl:text-6xl text-white mb-10'>Compare Rates, Check Eligibility & Apply</h2>
+                <h2 className='max-w-[1000px] mx-auto text-[3vw] text-white mb-10'>Compare Rates, Check Eligibility & Apply</h2>
                 <div className="grid grid-cols-5 gap-1">
 
                     <div className="header-card-container">
