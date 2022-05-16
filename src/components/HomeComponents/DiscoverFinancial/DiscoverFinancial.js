@@ -2,14 +2,17 @@ import React from 'react';
 import { HiLightBulb } from 'react-icons/hi';
 import { FaHandshake } from 'react-icons/fa';
 import { GiSpeedometer } from 'react-icons/gi';
+import useMediaQuery from '../../SharedComponents/useMediaQuery/useMediaQuery';
 
 const DiscoverFinancial = () => {
+    const isMobile = useMediaQuery('(max-width: 768px)');
+
     return (
         <>
             <div className='max-w-[1200px] mx-auto pt-16'>
-                <h2 className='text-[2vw] text-left'>Discover Your Financial Options!</h2>
-                <div className="flex container">
-                    <div className=" flex flex-col  justify-around content-start text-left">
+                <h2 className='text-2xl md:text-3xl lg:text-[2vw] lg:text-left container'>Discover Your Financial Options!</h2>
+                <div className="grid grid-cols-1 md:grid-cols-5 container">
+                    <div className="col-span-5 md:col-span-2 flex flex-col  justify-around content-start text-left">
                         <div className='flex items-center gap-4 mt-5'>
                             <HiLightBulb color='#e5bf23' size="70px" />
                             <div>
@@ -37,7 +40,7 @@ const DiscoverFinancial = () => {
                         </div>
                     </div>
 
-                    <div className='col-span-8'>
+                    <div className='col-span-5 md:col-span-3 mt-8 md:mt-0'>
                         <img className='w-full' src="https://www.aamartaka.com/images/customer-tab.png" alt="Customer tab" />
                     </div>
                 </div>

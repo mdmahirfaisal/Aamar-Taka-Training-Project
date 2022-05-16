@@ -1,4 +1,6 @@
 import React from 'react';
+import useMediaQuery from '../../SharedComponents/useMediaQuery/useMediaQuery';
+
 
 const bestDealData = [
     {
@@ -37,12 +39,16 @@ const bestDealData = [
 
 
 const BestDeal = () => {
+    const isMobile = useMediaQuery('(max-width: 768px)');
+
+
+
     return (
         <div className="bg-[#f9f9f9] pb-14">
             <div className='max-w-[1200px] mx-auto '>
                 <h2 className='text-3xl md:text-4xl text-[#3e3c3c] font-medium py-14'>Find Your Best Deal</h2>
 
-                <div className="grid grid-cols-4 gap-6 w-[96%] mx-auto lg:w-[100%]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-6 container">
                     {bestDealData.map((data, index) => <div
                         key={index}
                     >
@@ -57,7 +63,7 @@ const BestDeal = () => {
                                 <p className='text-sm my-1'>{data.desc3}</p>
 
                             </div>
-                            <a className='mt-4 inline-block rounded-[30px] mx-auto p-3 mt-6 text-md font-semibold text-white bg-[#208dd3] hover:bg-yellow-500 hover:text-black  transition-all ease-in-out duration-700 ' href="">APPLY NOW !</a>
+                            <a className='mt-4 block py-3 rounded-[30px] mx-auto w-[70%] mx-auto mt-6 text-md font-semibold text-white bg-[#208dd3] hover:bg-yellow-500 hover:text-black  transition-all ease-in-out duration-700 ' href="">APPLY NOW !</a>
                         </div>
 
                     </div>)}

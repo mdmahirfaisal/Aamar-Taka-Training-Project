@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
         right: 30,
         cursor: 'pointer',
       }} showUnder={220}>
-        <div className='bg-[#0ab9f2] rounded-[50%] p-3 '>{topIcon}</div>
+        <div className='bg-[#0ab9f2] rounded-[50%] p-3'>{topIcon}</div>
       </ScrollToTop>
       <Provider store={store}>
         <Component {...pageProps} />
