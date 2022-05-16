@@ -1,18 +1,15 @@
 import Head from 'next/head'
-import ScrollToTop from 'react-scroll-up'
 import BestDeal from '../components/HomeComponents/BestDeal/BestDeal'
 import Header from '../components/HomeComponents/Header/Header'
 import NavigationBar from '../components/SharedComponents/NavigationBar/NavigationBar'
 import DiscoverFinancial from '../components/HomeComponents/DiscoverFinancial/DiscoverFinancial'
 import Footer from '../components/SharedComponents/Footer/Footer'
-import { RiArrowUpSLine } from 'react-icons/ri'
 import Subscribe from '../components/HomeComponents/Subscribe/Subscribe'
+import PartnersAndInvestors from '../components/HomeComponents/PartnersAndInvestors/PartnersAndInvestors'
 
 
 
 export default function Home() {
-
-  const topIcon = <RiArrowUpSLine size="35px" color='white' />
 
   return (
     <div >
@@ -23,25 +20,12 @@ export default function Home() {
       </Head>
 
       <main>
-
-        <ScrollToTop style={{
-          position: 'fixed',
-          bottom: 50,
-          right: 30,
-          cursor: 'pointer',
-          transitionDuration: '0.2s',
-          transitionTimingFunction: 'linear',
-          transitionDelay: '0s',
-        }} showUnder={250}
-        >
-          <div className='bg-[#0ab9f2] rounded-[50%] p-3 '>{topIcon}</div>
-        </ScrollToTop>
-
         {/* ------------- */}
         <NavigationBar />
         <Header />
         <BestDeal />
         <DiscoverFinancial />
+        <PartnersAndInvestors />
         <Subscribe />
         <Footer />
       </main>
