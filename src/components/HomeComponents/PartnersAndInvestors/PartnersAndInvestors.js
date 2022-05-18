@@ -4,7 +4,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation, Autoplay } from "swiper";
+import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 

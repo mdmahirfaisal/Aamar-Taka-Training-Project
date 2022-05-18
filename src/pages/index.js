@@ -7,9 +7,15 @@ import Footer from '../components/SharedComponents/Footer/Footer'
 import Subscribe from '../components/HomeComponents/Subscribe/Subscribe'
 import PartnersAndInvestors from '../components/HomeComponents/PartnersAndInvestors/PartnersAndInvestors'
 
+import useMediaQuery from '../components/SharedComponents/useMediaQuery/useMediaQuery';
+import MobileNav from '../components/MobileHomeComponents/MobileNav/MobileNav'
+import MobileHeader from '../components/MobileHomeComponents/MobileHeader/MobileHeader'
+import MobileBestDeal from '../components/MobileHomeComponents/MobileBestDeal/MobileBestDeal'
+
 
 
 export default function Home() {
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   return (
     <div >
@@ -20,14 +26,24 @@ export default function Home() {
       </Head>
 
       <main>
-        {/* ------------- */}
-        <NavigationBar />
-        <Header />
-        <BestDeal />
-        <DiscoverFinancial />
-        <PartnersAndInvestors />
-        <Subscribe />
-        <Footer />
+        {isMobile &&
+          <>
+            <MobileNav />
+            <MobileHeader />
+            <MobileBestDeal />
+          </>
+        }
+        {!isMobile &&
+          <>
+            <NavigationBar />
+            <Header />
+            <BestDeal />
+            <DiscoverFinancial />
+            <PartnersAndInvestors />
+            <Subscribe />
+            <Footer />
+          </>
+        }
       </main>
     </div>
   )

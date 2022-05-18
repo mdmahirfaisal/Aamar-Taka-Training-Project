@@ -36,13 +36,6 @@ a {
 .header-card-container {
   position: relative;
   width: 100%;
-  max-width: 350px;
-}
-
-.header-card-image {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 .header-card-overlay {
@@ -74,6 +67,7 @@ a {
 
 .header-card-container:hover .header-card-overlay {
   opacity: 1;
+  overflow-y: scroll;
 }
 
 /// out service style
@@ -88,4 +82,10 @@ a {
 .subscribe-bg {
   background-image: url("https://www.aamartaka.com/static/media/subscribe-bg.22d721f9.png");
   background-repeat: no-repeat;
+}
+
+/// mobile header style
+
+.mobileHeaderBorder {
+  border: 1px dashed rgb(193, 193, 193);
 }
