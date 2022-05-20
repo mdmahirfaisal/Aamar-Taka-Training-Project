@@ -89,3 +89,14 @@ a {
 .mobileHeaderBorder {
   border: 1px dashed rgb(193, 193, 193);
 }
+
+// personal loan button style
+.loanButton {
+  --hover: #3b6992;
+  transition: 0.2s;
+}
+
+.loanButton:hover,
+.loanButton:focus {
+  box-shadow: inset 0 3.25em 0 0 var(--hover);
+}

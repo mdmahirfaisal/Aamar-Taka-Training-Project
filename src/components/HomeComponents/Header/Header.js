@@ -14,8 +14,10 @@ import { MdOutlineSavings } from 'react-icons/md';
 import { RiExchangeDollarLine } from 'react-icons/ri';
 import { IoIosGitCompare } from 'react-icons/io';
 import { MdOutlinePriceChange } from 'react-icons/md';
+import { useRouter } from 'next/router';
 
 const Header = () => {
+    const router = useRouter();
 
     return (
         <>
@@ -28,9 +30,9 @@ const Header = () => {
                         <div className="header-card-container">
                             <Image src={loan} alt="Image" className=" header-card-image" />
                             <div className="header-card-overlay">
-                                <a href=""><BsPerson color='lightblue' size="28px" /> Personal Loan</a>
-                                <a href=""><BiHomeAlt color='orange' size="28px" /> Home Loan</a>
-                                <a href=""><AiOutlineCar color='rgb(118, 193, 14)' size="28px" /> Car Loan</a>
+                                <a className='cursor-pointer' onClick={() => router.push('/personal-loan')}><BsPerson color='lightblue' size="28px" /> Personal Loan</a>
+                                <a className='cursor-pointer' onClick={() => router.push('/home-loan')}><BiHomeAlt color='orange' size="28px" /> Home Loan</a>
+                                <a className='cursor-pointer' onClick={() => router.push('/car-loan')}><AiOutlineCar color='rgb(118, 193, 14)' size="28px" /> Car Loan</a>
                             </div>
                         </div>
 
