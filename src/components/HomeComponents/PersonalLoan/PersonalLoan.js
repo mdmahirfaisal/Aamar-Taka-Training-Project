@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavigationBar from '../../SharedComponents/NavigationBar/NavigationBar';
 import Footer from '../../SharedComponents/Footer/Footer';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
@@ -6,22 +6,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleLoanType, handleProfessionType } from '../../../redux/Slices/LoanSlice';
 import { useRouter } from 'next/router';
 
+// class names 
+const inputContainerClassName = "bg-white flex items-center gap-2 px-2 py-3 rounded-md";
+const inputClassName = 'border-2 border-[#00bdf2] w-5 h-5 checked:bg-[#00bdf2] cursor-pointer transition-all duration-700';
+
 const PersonalLoan = () => {
     const dispatch = useDispatch();
     const { loanType, professionType } = useSelector(state => state.loan)
     const router = useRouter();
 
-
     const handLePersonalLoan = (e) => {
         e.preventDefault();
         console.log(loanType);
         console.log(professionType);
+        router.push('/personal-loan-eligibility')
     }
 
     return (
         <>
             <NavigationBar />
-            <div className='h-[100%] pb-10 lg:pb-0 lg:h-[92vh] bg-[#1b5f8d] grid place-items-center'>
+            <div className='h-[100%] pb-10 lg:pb-0 lg:min-h-[92vh] bg-[#1b5f8d] grid place-items-center'>
 
                 <div className="max-w-[1200px] mx-auto">
                     <h2 className='text-white text-2xl lg:text-3xl py-5'>We help you to get <span className='font-bold'>personal loan</span> easily</h2>
@@ -31,16 +35,16 @@ const PersonalLoan = () => {
                             <div className="">
                                 <h5 className='text-lg md:text-xl text-white my-3 text-left md:text-center'>Select Loan Type</h5>
                                 <div className="grid grid-cols-3 gap-3">
-                                    <div className="bg-white flex items-center gap-2 px-2 py-3 rounded-md">
-                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="newLoan" name="fav_language" value="New Loan" className='border-2 border-[#00bdf2] w-5 h-5 checked:bg-[#00bdf2] cursor-pointer transition-all duration-700' required />
+                                    <div className={inputContainerClassName}>
+                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="newLoan" name="fav_language" value="New Loan" className={inputClassName} required />
                                         <label className='cursor-pointer' htmlFor="newLoan">New Loan</label>
                                     </div>
-                                    <div className="bg-white flex items-center gap-2 px-2 py-3 rounded-md">
-                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="takeOver" name="fav_language" value="Take Over" className='border-2 border-[#00bdf2] w-5 h-5 checked:bg-[#00bdf2] cursor-pointer transition-all duration-700' required />
+                                    <div className={inputContainerClassName}>
+                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="takeOver" name="fav_language" value="Take Over" className={inputClassName} required />
                                         <label className='cursor-pointer' htmlFor="takeOver">Take Over</label>
                                     </div>
-                                    <div className="bg-white flex items-center gap-2 px-2 py-3 rounded-md">
-                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="topUp" name="fav_language" value="Top Up" className='border-2 border-[#00bdf2] w-5 h-5 checked:bg-[#00bdf2] cursor-pointer transition-all duration-700' required />
+                                    <div className={inputContainerClassName}>
+                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="topUp" name="fav_language" value="Top Up" className={inputClassName} required />
                                         <label className='cursor-pointer' htmlFor="topUp">Top Up</label>
                                     </div>
                                 </div>
@@ -60,8 +64,8 @@ const PersonalLoan = () => {
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-3 w-full py-4 ">
-                            <input type="submit" className='loanButton hover:text-white bg-[#f4ca1f] rounded-md text-gray-900 text-lg font-medium py-2 block w-[100%] mx-auto' value="COMPARE RATE" />
-                            <input type="submit" className='loanButton bg-[#3abaf4] rounded-md text-gray-100 text-lg font-medium py-2 block w-[100%] mx-auto' value="CHECK ELIGIBILITY" />
+                            <input type="submit" className='loanButton hover:text-white bg-[#f4ca1f] rounded-md text-gray-900 text-lg font-medium py-2 block w-[100%] mx-auto cursor-pointer' value="COMPARE RATE" />
+                            <input type="submit" className='loanButton bg-[#3abaf4] rounded-md text-gray-100 text-lg font-medium py-2 block w-[100%] mx-auto cursor-pointer' value="CHECK ELIGIBILITY" />
                         </div>
                     </form>
                 </div>

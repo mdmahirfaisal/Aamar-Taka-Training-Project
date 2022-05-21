@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { AiOutlineFileDone } from 'react-icons/ai';
 import { GrDocumentText } from 'react-icons/gr';
 import { RiCheckboxMultipleLine } from 'react-icons/ri';
@@ -8,30 +9,38 @@ const cardData = [
     {
         img: 'https://img.freepik.com/free-vector/man-shows-gesture-great-idea_10045-637.jpg?t=st=1652807158~exp=1652807758~hmac=d8eee9ce3d8046c764a585c73e2fba103e4bf9b870bd7b652e5ee126844eba12&w=740',
         title: 'Personal Loan',
+        link: "personal-loan"
     },
     {
         img: 'https://img.freepik.com/free-vector/house-with-red-roof-isolated_1284-41870.jpg?t=st=1652807259~exp=1652807859~hmac=ed4e0c0681bc4b77ce9aef11a9b607c203c9b8dc428336d5f481839f6e2870a6&w=826',
         title: 'Home Loan',
+        link: "home-loan"
     },
     {
         img: 'https://img.freepik.com/free-vector/colored-flat-male-love-his-car-composition-with-man-washes-his-car-garage_1284-19397.jpg?size=338&ext=jpg&ga=GA1.2.1474067928.1625421490',
         title: 'Car Loan',
+        link: "car-loan"
     },
     {
         img: 'https://img.freepik.com/free-vector/realistic-credit-card-design_23-2149125376.jpg?t=st=1652807486~exp=1652808086~hmac=2dfd67e553fd0cfbc27152e0042f5b9d196c3237e6adabc4cfdf940abd9f322e&w=740',
         title: 'Credit Card',
+        link: ""
     },
     {
         img: 'https://www.aamartaka.com/svg-icon/fixed_deposit.svg',
         title: 'DPS',
+        link: ""
     },
     {
         img: 'https://www.aamartaka.com/svg-icon/fixed_deposit.svg',
         title: 'Fixed Deposit',
+        link: ""
     },
 ];
 
 const MobileHeader = () => {
+    const router = useRouter();
+
     return (
         <>
             <div className='bg-[#f8f8f8]'>
@@ -44,6 +53,7 @@ const MobileHeader = () => {
                 <div className="grid grid-cols-3 gap-2 container">
                     {cardData?.map(((data, index) => <div
                         key={index}
+                        onClick={() => router.push(data.link)}
                         className="bg-white rounded-xl shadow-sm p-2 cursor-pointer"
                     >
                         <div className=''>
