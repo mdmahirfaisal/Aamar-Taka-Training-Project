@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 
 // class names 
 const inputContainerClassName = "bg-white flex items-center gap-2 px-2 py-3 rounded-md";
-const inputClassName = 'border-2 border-[#00bdf2] w-5 h-5 checked:bg-[#00bdf2] cursor-pointer transition-all duration-700';
 
 const PersonalLoan = () => {
     const dispatch = useDispatch();
@@ -36,15 +35,15 @@ const PersonalLoan = () => {
                                 <h5 className='text-lg md:text-xl text-white my-3 text-left md:text-center'>Select Loan Type</h5>
                                 <div className="grid grid-cols-3 gap-3">
                                     <div className={inputContainerClassName}>
-                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="newLoan" name="fav_language" value="New Loan" className={inputClassName} required />
+                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="newLoan" name="fav_language" value="New Loan" required />
                                         <label className='cursor-pointer' htmlFor="newLoan">New Loan</label>
                                     </div>
                                     <div className={inputContainerClassName}>
-                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="takeOver" name="fav_language" value="Take Over" className={inputClassName} required />
+                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="takeOver" name="fav_language" value="Take Over" required />
                                         <label className='cursor-pointer' htmlFor="takeOver">Take Over</label>
                                     </div>
                                     <div className={inputContainerClassName}>
-                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="topUp" name="fav_language" value="Top Up" className={inputClassName} required />
+                                        <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="topUp" name="fav_language" value="Top Up" required />
                                         <label className='cursor-pointer' htmlFor="topUp">Top Up</label>
                                     </div>
                                 </div>

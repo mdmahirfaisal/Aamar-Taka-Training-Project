@@ -84,6 +84,30 @@ a {
   background-repeat: no-repeat;
 }
 
+//// Radio button style
+input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  box-shadow: inset 0 0 0 .1em white, 0 0 0 2px #00bdf2;
+  border-radius: 50%;
+  transition: .5s;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+  background: #00bdf2;
+  box-shadow: inset 0 0 0 .3em white, 0 0 0 2px #00bdf2;
+}
+
+input[type="radio"]:focus {
+  outline: 0;
+}
+
+
+
+//// Radio button end 
+
 /// mobile header style
 
 .mobileHeaderBorder {

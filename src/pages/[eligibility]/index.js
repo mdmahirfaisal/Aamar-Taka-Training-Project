@@ -23,12 +23,11 @@ const stepsDoneBorderClassNames = 'grow border-b-[3px] border-[#0ab9f2]';
 // birth select class
 const SelectFieldClassNames = "cursor-pointer form-select appearance-none block w-full px-3 py-[11px] font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:outline-none ";
 // gender input class 
-const genderInputClassNames = 'border-2 border-[#00bdf2] w-5 h-5 checked:bg-[#00bdf2] cursor-pointer transition-all duration-700';
+// const genderInputClassNames = 'border-2 border-[#00bdf2] w-5 h-5 checked:bg-[#00bdf2] cursor-pointer transition-all duration-700';
 const bangladeshDivisions = ["Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet", "Barishal", "Rangpur", "Mymensing"]
 
 
 const Index = () => {
-    const [isEligibilityStep2, setIsEligibilityStep2] = useState(false);
 
     const dispatch = useDispatch();
     const { professionType } = useSelector(state => state.loan);
@@ -55,13 +54,14 @@ const Index = () => {
         productType = "Car Loan"
     };
 
-    const handleEligibilityStep = (e) => {
-        e.preventDefault();
-        if (!isEligibilityStep2) {
-            setIsEligibilityStep2(true);
-        }
-        console.log(isEligibilityStep2);
-    }
+    ///////// Eligibility Step controls 
+    const [value, setValue] = useState(1);
+    const increaseEligibilityStep = () => {
+        setValue(value + 1 > 4 ? 4 : value + 1);
+    };
+    const decreaseEligibilityStep = () => {
+        setValue(value - 1 < 0 ? 0 : value - 1);
+    };
 
 
     return (
@@ -102,21 +102,21 @@ const Index = () => {
 
                             {/* ------- Steps number 1 filters control ------- */}
 
-                            <form onSubmit={handleEligibilityStep}>
+                            <form onSubmit={increaseEligibilityStep}>
                                 {/* ----- Gender -----  */}
                                 <div className="ml-3 my-3 flex items-center">
                                     <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Gender</p>
                                     <div className="w-[70%] grid grid-cols-3">
                                         <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
-                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="newLoan" value="Male" name='gender' className={genderInputClassNames} required />
+                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="newLoan" value="Male" name='gender' required />
                                             <label className='cursor-pointer' htmlFor="newLoan">Male</label>
                                         </div>
                                         <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
-                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="takeOver" value="Female" name='gender' className={genderInputClassNames} required />
+                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="takeOver" value="Female" name='gender' required />
                                             <label className='cursor-pointer' htmlFor="takeOver">Female</label>
                                         </div>
                                         <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
-                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="topUp" value="Other" name='gender' className={genderInputClassNames} required />
+                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="topUp" value="Other" name='gender' required />
                                             <label className='cursor-pointer' htmlFor="topUp">Other</label>
                                         </div>
                                     </div>

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 
 // flex display data container class names
-const flexBoxContainerClassName = "flex items-center gap-2 rounded-md mt-1 bg-white border p-2";
+const flexBoxContainerClassName = "flex items-center gap-2 rounded-md mt-2 bg-white border p-2";
 const staticTitleClassName = "text-[#0ab9f2] text-[14px] text-left";
 const dynamicTitleClassName = "text-[#585858] text-[14px] text-left";
 
@@ -34,7 +34,6 @@ const DisplayFilterData = ({ productType }) => {
                     <p className={dynamicTitleClassName}>{productType}</p>
                 </div>
             </div>}
-
 
             {professionType && <div className={flexBoxContainerClassName}>
                 <img className='h-10 w-10 ' src="https://i.ibb.co/0sPn9DG/profession.png" alt="" />
