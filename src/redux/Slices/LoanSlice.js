@@ -13,37 +13,36 @@ export const loanSlice = createSlice({
         location: "",
         dateOfBirth: {},
         calculatedAge: {},
-
+        jobDetails: {
+            companyName: "",
+            companyType: "",
+            jobStatus: "",
+            currentExperience: {},
+            totalExperience: {},
+        },
     },
     reducers: {
         handleLoanType: (state, { payload }) => {
             state.loanType = payload;
         },
-
         handleProfessionType: (state, { payload }) => {
             state.professionType = payload;
         },
-
         handleLoanPurpose: (state, { payload }) => {
             state.loanPurpose = payload;
         },
-
         handleResidenceType: (state, { payload }) => {
             state.residenceType = payload;
         },
-
         handleCarType: (state, { payload }) => {
             state.carType = payload;
         },
-
         handleGenderType: (state, { payload }) => {
             state.genderType = payload;
         },
-
         handleLocation: (state, { payload }) => {
             state.location = payload;
         },
-
         handleDateOfBirth: (state, { payload }) => {
             if (payload.name === "day") {
                 state.dateOfBirth.day = payload.value;
@@ -58,6 +57,7 @@ export const loanSlice = createSlice({
         handleCalculatedAge: (state, { payload }) => {
             state.calculatedAge = payload;
         },
+        ///////// Job Type Details 
 
     },
 })

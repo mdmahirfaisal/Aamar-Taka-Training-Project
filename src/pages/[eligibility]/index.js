@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { BsCircle } from 'react-icons/bs';
 import { FaRegCheckCircle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../components/SharedComponents/Footer/Footer';
 import NavigationBar from '../../components/SharedComponents/NavigationBar/NavigationBar';
-import { handleProfessionType, handleGenderType, handleLocation, handleResidenceType } from '../../redux/Slices/LoanSlice';
-
 import DisplayFilterData from '../../components/HomeComponents/Eligibilities/DisplayFilterData/DisplayFilterData';
-import DateOfBirthFilter from '../../components/HomeComponents/Eligibilities/DateOfBirthFilter';
+import FormFirstStep from '../../components/HomeComponents/Eligibilities/FormFirstStep';
+import FormSecondStep from '../../components/HomeComponents/Eligibilities/FormSecondStep';
+import FormThirdStep from '../../components/HomeComponents/Eligibilities/FormThirdStep';
+import FormFourthStep from '../../components/HomeComponents/Eligibilities/FormFourthStep';
 
 
 //// Class names control ////
@@ -20,17 +20,9 @@ const stepsDoneIconClassNames = 'mx-auto text-[22px] text-[#0ab9f2]';
 const stepsBorderClassNames = 'grow border-b-[3px] border-[#b8b8b8]';
 const stepsDoneBorderClassNames = 'grow border-b-[3px] border-[#0ab9f2]';
 
-// birth select class
-const SelectFieldClassNames = "cursor-pointer form-select appearance-none block w-full px-3 py-[11px] font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:outline-none ";
-// gender input class 
-// const genderInputClassNames = 'border-2 border-[#00bdf2] w-5 h-5 checked:bg-[#00bdf2] cursor-pointer transition-all duration-700';
-const bangladeshDivisions = ["Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet", "Barishal", "Rangpur", "Mymensing"]
 
 
 const Index = () => {
-
-    const dispatch = useDispatch();
-    const { professionType } = useSelector(state => state.loan);
     const router = useRouter();
     const eligibility = router?.query?.eligibility
 
@@ -55,19 +47,24 @@ const Index = () => {
     };
 
     ///////// Eligibility Step controls 
-    const [value, setValue] = useState(1);
-    const increaseEligibilityStep = () => {
-        setValue(value + 1 > 4 ? 4 : value + 1);
+    const [formStepValue, setFormStepValue] = useState(1);
+
+    const increaseEligibilityStep = (e) => {
+        if (formStepValue === 4) {
+            alert("this form submit completed")
+        } else {
+            setFormStepValue(formStepValue + 1 > 4 ? 4 : formStepValue + 1);
+        }
+        e.preventDefault();
     };
     const decreaseEligibilityStep = () => {
-        setValue(value - 1 < 0 ? 0 : value - 1);
+        setFormStepValue(formStepValue - 1 < 1 ? 1 : formStepValue - 1);
     };
-
 
     return (
         <>
             <NavigationBar />
-            <div className='h-[100%] py-10 lg:py-0 lg:pt-[10vw] lg:min-h-[92vh] bg-[#1b5f8d]'>
+            <div className='h-[100%] py-10 lg:py-0 lg:py-[10vw] lg:min-h-[92vh] bg-[#1b5f8d]'>
 
                 <div className="max-w-[1200px] mx-auto">
 
@@ -80,7 +77,7 @@ const Index = () => {
                                 <h5 className='text-white font-medium text-[20px]'>{elgHeaderTitle}</h5>
                             </div>
 
-                            {/* ------- Steps number 1 border success control ------- */}
+                            {/* ------- Steps border style success control ------- */}
                             <div className="mt-1 px-2">
                                 <div className="flex items-center justify-between">
                                     <p className={stepsTextClassNames}>STEP-1 </p>
@@ -90,92 +87,104 @@ const Index = () => {
                                 </div>
 
                                 <div className="flex items-center justify-between">
-                                    <FaRegCheckCircle className={stepsDoneIconClassNames} />
-                                    <p className={stepsDoneBorderClassNames} />
-                                    <BsCircle className={stepsIconClassNames} />
-                                    <p className={stepsBorderClassNames} />
-                                    <BsCircle className={stepsIconClassNames} />
-                                    <p className={stepsBorderClassNames} />
-                                    <BsCircle className={stepsIconClassNames} />
+                                    {formStepValue === 1 && <>
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <BsCircle className={stepsIconClassNames} />
+                                        <p className={stepsBorderClassNames} />
+
+                                        <BsCircle className={stepsIconClassNames} />
+                                        <p className={stepsBorderClassNames} />
+                                        <BsCircle className={stepsIconClassNames} />
+                                    </>}
+
+                                    {formStepValue === 2 && <>
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <BsCircle className={stepsIconClassNames} />
+                                        <p className={stepsBorderClassNames} />
+                                        <BsCircle className={stepsIconClassNames} />
+                                    </>}
+
+                                    {formStepValue === 3 && <>
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <BsCircle className={stepsIconClassNames} />
+                                    </>}
+
+                                    {formStepValue === 4 && <>
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                        <p className={stepsDoneBorderClassNames} />
+                                        <FaRegCheckCircle className={stepsDoneIconClassNames} />
+                                    </>}
+
                                 </div>
                             </div>
 
-                            {/* ------- Steps number 1 filters control ------- */}
+                            {/* ------- Steps filters control ------- */}
 
-                            <form onSubmit={increaseEligibilityStep}>
-                                {/* ----- Gender -----  */}
-                                <div className="ml-3 my-3 flex items-center">
-                                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Gender</p>
-                                    <div className="w-[70%] grid grid-cols-3">
-                                        <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
-                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="newLoan" value="Male" name='gender' required />
-                                            <label className='cursor-pointer' htmlFor="newLoan">Male</label>
-                                        </div>
-                                        <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
-                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="takeOver" value="Female" name='gender' required />
-                                            <label className='cursor-pointer' htmlFor="takeOver">Female</label>
-                                        </div>
-                                        <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
-                                            <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="topUp" value="Other" name='gender' required />
-                                            <label className='cursor-pointer' htmlFor="topUp">Other</label>
+                            {/* ----- First Step -----  */}
+                            {formStepValue === 1 && <>
+                                <form onSubmit={increaseEligibilityStep}>
+                                    <FormFirstStep />
+                                    <div className="w-[70%] ml-auto">
+                                        <button type='submit' className="w-[50%] mx-auto py-2 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
+                                    </div>
+                                </form>
+                            </>}
+                            {/* ----- Second Step -----  */}
+                            {formStepValue === 2 && <>
+                                <form onSubmit={increaseEligibilityStep}>
+                                    <FormSecondStep />
+                                    <div className="w-[70%] ml-auto">
+                                        <div className="w-[70%] ml-auto">
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <button onClick={decreaseEligibilityStep} className="w-[80%] mx-auto  py-2 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">BACK <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
+
+                                                <button type='submit' className="w-[80%] mx-auto py-2 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
+                            </>}
+                            {/* ----- Third Step -----  */}
+                            {formStepValue === 3 && <>
+                                <form onSubmit={increaseEligibilityStep}>
+                                    <FormThirdStep />
+                                    <div className="w-[70%] ml-auto">
+                                        <div className="w-[70%] ml-auto">
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <button onClick={decreaseEligibilityStep} className="w-[80%] mx-auto  py-2 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">BACK <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
 
-                                {/* ----- Date of Birth -----  */}
-                                <DateOfBirthFilter />
-
-                                {/* ----- Your Profession -----  */}
-                                <div className="ml-3 my-3 flex items-center">
-                                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Your Profession</p>
-                                    <div className="w-[70%]">
-                                        <div className="w-full relative">
-                                            <MdOutlineKeyboardArrowDown className='absolute right-1 top-[15px] text-2xl' />
-                                            <select onChange={(e) => dispatch(handleProfessionType(e.target.value))} defaultValue={professionType} className={SelectFieldClassNames} required>
-                                                <option className='hidden' value="">Select Your Profession...</option>
-                                                <option value="Salaried">Salaried</option>
-                                                <option value="Business Man">Business Man</option>
-                                                <option value="Land Lord">Land Lord</option>
-                                            </select>
+                                                <button type='submit' className="w-[80%] mx-auto py-2 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {/* ----- Your Residence Type -----  */}
-                                <div className="ml-3 my-3 flex items-center">
-                                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Your Residence Type</p>
-                                    <div className="w-[70%]">
-                                        <div className="w-full relative">
-                                            <MdOutlineKeyboardArrowDown className='absolute right-1 top-[15px] text-2xl' />
-                                            <select onChange={(e) => dispatch(handleResidenceType(e.target.value))} defaultValue="" className={SelectFieldClassNames} required>
-                                                <option className='hidden' value="">Select Your Residence Type</option>
-                                                <option value="Self-Owned Home">Self-Owned Home</option>
-                                                <option value="Rented Home">Rented Home</option>
-                                                <option value="Company Provided">Company Provided</option>
-                                            </select>
+                                </form>
+                            </>}
+                            {/* ----- Fourth Step -----  */}
+                            {formStepValue === 4 && <>
+                                <form onSubmit={increaseEligibilityStep}>
+                                    <FormFourthStep />
+                                    <div className="w-[70%] ml-auto">
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <button onClick={decreaseEligibilityStep} className="w-[80%] mx-auto py-2 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">BACK <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
+
+                                            <button type='submit' className="w-[80%] mx-auto py-2 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">Submit Form <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
                                         </div>
                                     </div>
-                                </div>
-                                {/* ----- Your division -----  */}
-                                <div className=" ml-3 my-3 flex items-center">
-                                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>{professionType === "Salaried" ? "Job Location" : professionType === "Business Man" ? "Business Location" : ""}</p>
-                                    <div className="w-[70%]">
-                                        <div className={professionType === "Land Lord" ? "invisible" : "w-full relative"}>
-                                            <MdOutlineKeyboardArrowDown className='absolute right-1 top-[15px] text-2xl' />
-                                            <select onChange={(e) => dispatch(handleLocation(e.target.value))} defaultValue="" className={SelectFieldClassNames} required>
-                                                <option className='hidden' value="">Select Division</option>
-                                                {bangladeshDivisions?.map(division => <option
-                                                    key={division}
-                                                    value={division}>{division}</option>)}
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="w-[70%] ml-auto">
-                                    <button className="w-[50%] mx-auto py-2 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
-                                </div>
-
-                            </form>
+                                </form>
+                            </>}
                         </div>
 
                         {/* ------- Right side display data -------  */}
