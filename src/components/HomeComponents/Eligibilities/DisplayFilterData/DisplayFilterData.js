@@ -13,6 +13,7 @@ const dynamicTitleClassName = "text-[#585858] text-[14px] text-left";
 
 const DisplayFilterData = ({ productType }) => {
     const { loanType, professionType, calculatedAge, genderType, location, residenceType, loanPurpose, carType } = useSelector(state => state.loan);
+    const { companyName, companyType, jobStatus, currentExperience, totalExperience } = useSelector(state => state.loan?.jobDetails);
 
 
     return (

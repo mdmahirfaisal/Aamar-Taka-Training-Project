@@ -57,12 +57,28 @@ export const loanSlice = createSlice({
         handleCalculatedAge: (state, { payload }) => {
             state.calculatedAge = payload;
         },
+
         ///////// Job Type Details 
+        handleCompanyName: (state, { payload }) => {
+            state.jobDetails.companyName = payload;
+        },
+        handleCompanyType: (state, { payload }) => {
+            state.jobDetails.companyType = payload;
+        },
+        handleJobStatus: (state, { payload }) => {
+            state.jobDetails.jobStatus = payload;
+        },
+        handleCurrentExperience: (state, { payload }) => {
+            state.jobDetails.currentExperience = payload;
+        },
+        handleTotalExperience: (state, { payload }) => {
+            state.jobDetails.totalExperience = payload;
+        },
 
     },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { handleLoanType, handleProfessionType, handleLoanPurpose, handleResidenceType, handleCarType, handleGenderType, handleLocation, handleDateOfBirth, handleCalculatedAge } = loanSlice.actions
+export const { handleLoanType, handleProfessionType, handleLoanPurpose, handleResidenceType, handleCarType, handleGenderType, handleLocation, handleDateOfBirth, handleCalculatedAge, handleCompanyName, handleCompanyType, handleJobStatus, handleCurrentExperience, handleTotalExperience } = loanSlice.actions
 
 export default loanSlice.reducer

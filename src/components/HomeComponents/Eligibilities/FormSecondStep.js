@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomSelectField from '../CustomSelectField/CustomSelectField';
-import { handleProfessionType, } from '../../../redux/Slices/LoanSlice';
+import { handleCompanyName, handleCompanyType, handleJobStatus, handleCurrentExperience, handleTotalExperience } from '../../../redux/Slices/LoanSlice';
 
 /// company types options
 const companyTypeOptions = [
@@ -123,7 +123,7 @@ const FormSecondStep = () => {
     const [searchText, setSearchText] = useState("");
     const [companyNameOptions, setCompanyNameOptions] = useState([])
 
-    /// Search company name control
+    /// Profession type salaried details control
     const handleInputChange = text => {
         setSearchText(text);
         console.log(text);
@@ -138,12 +138,27 @@ const FormSecondStep = () => {
             .catch(err => console.log(err))
     }, [searchText])
 
-    const handleCompanyNames = value => {
-        console.log(value, <br />, searchText);
+    const handleCompanyNameChange = value => {
+        console.log(value);
+    };
+    const handleCompanyTypeChange = value => {
+        console.log(value);
+    };
+    const handleJobStatusChange = value => {
+        console.log(value);
+    };
+    const handleCurrentExpChange = value => {
+        console.log(value);
+    };
+    const handleTotalExpChange = value => {
+        console.log(value);
     };
 
-    /// company type control
-    const handleCompanyTypes = value => {
+    //// profession type businessman control
+
+
+    //// profession type land lord control
+    const handleCompanyNames = (value) => {
         console.log(value);
     }
 
@@ -156,7 +171,7 @@ const FormSecondStep = () => {
                     <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Company Name</p>
                     <div className="w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={companyNameOptions} onChange={handleCompanyNames} placeText={"Start Typing Here..."} isSearchable={true} onInputChange={handleInputChange} />
+                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyNameChange} placeText={"Start Typing Here..."} isSearchable={true} onInputChange={handleInputChange} />
                         </div>
                     </div>
                 </div>
@@ -166,7 +181,7 @@ const FormSecondStep = () => {
                     <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Company Type</p>
                     <div className="w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyTypes} placeText={"Select Your Company Type"} isSearchable={false} />
+                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyTypeChange} placeText={"Select Your Company Type"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
@@ -176,7 +191,7 @@ const FormSecondStep = () => {
                     <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Job Status</p>
                     <div className="w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={jobStatusOptions} onChange={handleCompanyNames} placeText={"Select Job Status"} isSearchable={false} />
+                            <CustomSelectField options={jobStatusOptions} onChange={handleJobStatusChange} placeText={"Select Job Status"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
@@ -186,10 +201,10 @@ const FormSecondStep = () => {
                     <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Job Experience (Current)</p>
                     <div className="w-[70%] grid grid-cols-2 gap-3">
                         <div className="w-full text-left">
-                            <CustomSelectField options={yearsOfExperience} onChange={handleCompanyNames} placeText={"Select Year"} isSearchable={false} />
+                            <CustomSelectField options={yearsOfExperience} onChange={handleCurrentExpChange} placeText={"Select Year"} isSearchable={false} />
                         </div>
                         <div className="w-full text-left">
-                            <CustomSelectField options={monthsOfExperience} onChange={handleCompanyNames} placeText={"Select Month"} isSearchable={false} />
+                            <CustomSelectField options={monthsOfExperience} onChange={handleCurrentExpChange} placeText={"Select Month"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
@@ -199,10 +214,10 @@ const FormSecondStep = () => {
                     <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Job Experience (Total)</p>
                     <div className="w-[70%] grid grid-cols-2 gap-3">
                         <div className="w-full text-left">
-                            <CustomSelectField options={yearsOfExperience} onChange={handleCompanyNames} placeText={"Select Year"} isSearchable={false} />
+                            <CustomSelectField options={yearsOfExperience} onChange={handleTotalExpChange} placeText={"Select Year"} isSearchable={false} />
                         </div>
                         <div className="w-full text-left">
-                            <CustomSelectField options={monthsOfExperience} onChange={handleCompanyNames} placeText={"Select Month"} isSearchable={false} />
+                            <CustomSelectField options={monthsOfExperience} onChange={handleTotalExpChange} placeText={"Select Month"} isSearchable={false} />
                         </div>
                     </div>
                 </div>

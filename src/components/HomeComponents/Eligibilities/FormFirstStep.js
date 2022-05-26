@@ -1,7 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-// import { RiArrowRightSLine } from 'react-icons/ri';
 import DateOfBirthFilter from './DateOfBirthFilter';
 import { handleGenderType, handleProfessionType, handleResidenceType, handleLocation } from '../../../redux/Slices/LoanSlice';
 import CustomSelectField from '../CustomSelectField/CustomSelectField';

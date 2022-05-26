@@ -145,15 +145,12 @@ const DateOfBirthFilter = () => {
 
     /// get input values
     const handleDayChange = value => {
-        console.log(value.value);
         dispatch(handleDateOfBirth({ name: "day", value: value.value }))
     }
     const handleMonthChange = value => {
-        console.log(value.value);
         dispatch(handleDateOfBirth({ name: "month", value }))
     }
     const handleYearChange = value => {
-        console.log(value.value);
         dispatch(handleDateOfBirth({ name: "year", value: value.value }))
     }
 
