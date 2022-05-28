@@ -140,18 +140,27 @@ const FormSecondStep = () => {
 
     const handleCompanyNameChange = value => {
         console.log(value);
+        dispatch(handleCompanyName(value.label))
     };
     const handleCompanyTypeChange = value => {
         console.log(value);
+        dispatch(handleCompanyType(value.label))
     };
     const handleJobStatusChange = value => {
         console.log(value);
+        dispatch(handleJobStatus(value.label))
     };
-    const handleCurrentExpChange = value => {
-        console.log(value);
+    const handleCurrentExpYear = value => {
+        dispatch(handleCurrentExperience({ name: "year", value: value.label }))
     };
-    const handleTotalExpChange = value => {
-        console.log(value);
+    const handleCurrentExpMonth = value => {
+        dispatch(handleCurrentExperience({ name: "month", value: value.label }))
+    };
+    const handleTotalExpYear = value => {
+        dispatch(handleTotalExperience({ name: "year", value: value.label }))
+    };
+    const handleTotalExpMonth = value => {
+        dispatch(handleTotalExperience({ name: "month", value: value.label }))
     };
 
     //// profession type businessman control
@@ -201,10 +210,10 @@ const FormSecondStep = () => {
                     <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Job Experience (Current)</p>
                     <div className="w-[70%] grid grid-cols-2 gap-3">
                         <div className="w-full text-left">
-                            <CustomSelectField options={yearsOfExperience} onChange={handleCurrentExpChange} placeText={"Select Year"} isSearchable={false} />
+                            <CustomSelectField options={yearsOfExperience} onChange={handleCurrentExpYear} placeText={"Select Year"} isSearchable={false} />
                         </div>
                         <div className="w-full text-left">
-                            <CustomSelectField options={monthsOfExperience} onChange={handleCurrentExpChange} placeText={"Select Month"} isSearchable={false} />
+                            <CustomSelectField options={monthsOfExperience} onChange={handleCurrentExpMonth} placeText={"Select Month"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
@@ -214,10 +223,10 @@ const FormSecondStep = () => {
                     <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Job Experience (Total)</p>
                     <div className="w-[70%] grid grid-cols-2 gap-3">
                         <div className="w-full text-left">
-                            <CustomSelectField options={yearsOfExperience} onChange={handleTotalExpChange} placeText={"Select Year"} isSearchable={false} />
+                            <CustomSelectField options={yearsOfExperience} onChange={handleTotalExpYear} placeText={"Select Year"} isSearchable={false} />
                         </div>
                         <div className="w-full text-left">
-                            <CustomSelectField options={monthsOfExperience} onChange={handleTotalExpChange} placeText={"Select Month"} isSearchable={false} />
+                            <CustomSelectField options={monthsOfExperience} onChange={handleTotalExpMonth} placeText={"Select Month"} isSearchable={false} />
                         </div>
                     </div>
                 </div>

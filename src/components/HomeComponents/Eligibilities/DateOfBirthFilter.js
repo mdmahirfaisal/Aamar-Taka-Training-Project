@@ -155,9 +155,9 @@ const DateOfBirthFilter = () => {
     }
 
     return (
-        <div className="ml-3 my-3 flex items-center">
-            <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Date of Birth</p>
-            <div className="w-[70%] grid grid-cols-3">
+        <div className="ml-3 my-3 md:flex items-center">
+            <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Date of Birth</p>
+            <div className="md:w-[70%] grid grid-cols-3">
                 <div className="w-full relative text-left">
                     <CustomSelectField options={dayValues} onChange={handleDayChange} placeText={dateOfBirth.day || "Day"} isSearchable={false} />
                 </div>

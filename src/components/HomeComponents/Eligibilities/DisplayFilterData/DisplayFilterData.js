@@ -15,7 +15,7 @@ const DisplayFilterData = ({ productType }) => {
     const { loanType, professionType, calculatedAge, genderType, location, residenceType, loanPurpose, carType } = useSelector(state => state.loan);
     const { companyName, companyType, jobStatus, currentExperience, totalExperience } = useSelector(state => state.loan?.jobDetails);
 
-
+    console.log(currentExperience.year, currentExperience.month, totalExperience.year, totalExperience.month);
     return (
         <div className='overflow-y-scroll max-h-[470px] '>
             <div className="flex gap-2">

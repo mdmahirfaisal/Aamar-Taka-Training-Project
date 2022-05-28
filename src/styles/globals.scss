@@ -87,8 +87,8 @@ a {
 //// Radio button style
 input[type="radio"] {
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   box-shadow: inset 0 0 0 .1em white, 0 0 0 2px #00bdf2;
   border-radius: 50%;
   transition: .5s;
@@ -122,3 +122,58 @@ input[type="radio"]:focus {
 .loanButton:focus {
   box-shadow: inset 0 3.25em 0 0 var(--hover);
 }
+
+/////  Loan steeper next button start
+
+button.bttn {
+  border-radius: 40px;
+  margin: 0 auto;
+  position: relative;
+}
+
+button.bttn:hover {
+  border-radius: 40px;
+  margin: 0 auto;
+  position: relative;
+  color: white;
+}
+
+.bttn {
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  border-radius: 40px;
+  font-weight: bold;
+  padding: 14px 0px;
+  border: 1px solid lightgray;
+}
+
+.bttn:before {
+  transition: 0.2s;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  border-radius: 40px;
+  opacity: 0;
+  content: "";
+  background-color: #0ab9f2;
+  color: white;
+
+}
+
+.bttn:hover:before {
+  -webkit-transition: 0.3s all ease;
+  transition: 0.5s;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+/////  Loan steeper next button end

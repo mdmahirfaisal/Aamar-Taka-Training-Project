@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import CustomSelectField from '../CustomSelectField/CustomSelectField';
 
 // class names 
-const inputContainerClassName = "bg-white flex items-center gap-2 px-2 py-3 rounded-md";
+const inputContainerClassName = "bg-white flex items-center gap-2 py-[12px] pl-2 rounded-[2px]";
 const professionOption = [
     { label: 'Salaried', value: 'Salaried' },
     { label: 'Business Man', value: 'Business Man' },
@@ -32,12 +32,12 @@ const PersonalLoan = () => {
 
                 <div className="max-w-[1200px] mx-auto">
                     <h2 className='text-white text-2xl lg:text-3xl py-5'>We help you to get <span className='font-bold'>personal loan</span> easily</h2>
-                    <form onSubmit={handLePersonalLoan} className="bg-[#ffffff34] rounded-lg p-5">
+                    <form onSubmit={handLePersonalLoan} className="bg-[#ffffff34] rounded-lg p-2 md:p-5">
                         <div className=" grid grid-cols-1 lg:grid-cols-2 gap-3  ">
                             {/* Select Loan type  */}
                             <div className="">
                                 <h5 className='text-lg md:text-xl text-white my-3 text-left md:text-center'>Select Loan Type</h5>
-                                <div className="grid grid-cols-3 gap-3">
+                                <div className="grid grid-cols-3 gap-2 md:gap-3">
                                     <div className={inputContainerClassName}>
                                         <input onChange={(e) => dispatch(handleLoanType(e.target.value))} type="radio" id="newLoan" name="fav_language" value="New Loan" required />
                                         <label className='cursor-pointer' htmlFor="newLoan">New Loan</label>

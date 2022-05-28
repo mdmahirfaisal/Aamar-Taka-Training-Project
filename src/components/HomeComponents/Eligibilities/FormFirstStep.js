@@ -25,6 +25,9 @@ const bangladeshDivisions = [
     { label: "Rangpur", value: "Rangpur" },
     { label: "Mymensing", value: "Mymensing" }];
 
+// class names 
+const inputContainerClassName = "bg-white flex items-center gap-2 py-[12px] pl-2 border rounded-[2px]";
+
 
 const FormFirstStep = () => {
     const dispatch = useDispatch();
@@ -46,17 +49,17 @@ const FormFirstStep = () => {
         <>
             {/* ----- Gender -----  */}
             <div className="ml-3 my-3 flex items-center">
-                <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Gender</p>
-                <div className="w-[70%] grid grid-cols-3">
-                    <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
+                <p className='hidden md:block md:w-[30%] text-[#696969] text-[16px] font-medium text-left '>Gender</p>
+                <div className="w-[100%] md:w-[70%] grid grid-cols-3">
+                    <div className={inputContainerClassName}>
                         <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="newLoan" checked={genderType === "Male" && genderType} value="Male" name='gender' required={genderType ? false : true} />
                         <label className='cursor-pointer' htmlFor="newLoan">Male</label>
                     </div>
-                    <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
+                    <div className={inputContainerClassName}>
                         <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="takeOver" checked={genderType === "Female" && genderType} value="Female" name='gender' required={genderType ? false : true} />
                         <label className='cursor-pointer' htmlFor="takeOver">Female</label>
                     </div>
-                    <div className="grow bg-white flex items-center gap-2 p-2 border rounded-[1px]">
+                    <div className={inputContainerClassName}>
                         <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="topUp" checked={genderType === "Other" && genderType} value="Other" name='gender' required={genderType ? false : true} />
                         <label className='cursor-pointer' htmlFor="topUp">Other</label>
                     </div>
@@ -66,9 +69,9 @@ const FormFirstStep = () => {
             <DateOfBirthFilter />
 
             {/* ----- Your Profession type -----  */}
-            <div className="ml-3 my-3 flex items-center">
-                <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Your Profession</p>
-                <div className="w-[70%]">
+            <div className="ml-3 my-3 md:flex items-center">
+                <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Your Profession</p>
+                <div className="md:w-[70%]">
                     <div className="w-full text-left">
                         <CustomSelectField options={professionOption} onChange={handleProfession} placeText={professionType ? professionType : "Select Your Profession"} isSearchable={false} required />
                     </div>
@@ -76,9 +79,9 @@ const FormFirstStep = () => {
             </div>
 
             {/* ----- Your Residence Type -----  */}
-            <div className="ml-3 my-3 flex items-center">
-                <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Your Residence Type</p>
-                <div className="w-[70%]">
+            <div className="ml-3 my-3 md:flex items-center">
+                <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Your Residence Type</p>
+                <div className="md:w-[70%]">
                     <div className="w-full text-left">
                         <CustomSelectField options={residenceOption} onChange={handleResidency} placeText={residenceType || "Select Residence Type"} isSearchable={false} required />
                     </div>
@@ -86,9 +89,9 @@ const FormFirstStep = () => {
             </div>
 
             {/* ----- Your division -----  */}
-            <div className=" ml-3 my-3 flex items-center">
-                <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>{professionType === "Salaried" ? "Job Location" : professionType === "Business Man" ? "Business Location" : ""}</p>
-                <div className="w-[70%]">
+            <div className=" ml-3 my-3 md:flex items-center">
+                <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>{professionType === "Salaried" ? "Job Location" : professionType === "Business Man" ? "Business Location" : ""}</p>
+                <div className="md:w-[70%]">
                     <div className={professionType === "Land Lord" ? "hidden" : "w-full relative text-left"}>
                         <CustomSelectField options={bangladeshDivisions} onChange={handleDivisions} placeText={location || "Select Division"} isSearchable={false} required />
                     </div>

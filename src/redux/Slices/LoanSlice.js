@@ -69,10 +69,13 @@ export const loanSlice = createSlice({
             state.jobDetails.jobStatus = payload;
         },
         handleCurrentExperience: (state, { payload }) => {
-            state.jobDetails.currentExperience = payload;
+            if (payload.name === "year") state.jobDetails.currentExperience.year = payload.value;
+            if (payload.name === "month") state.jobDetails.currentExperience.month = payload.value;
+
         },
         handleTotalExperience: (state, { payload }) => {
-            state.jobDetails.totalExperience = payload;
+            if (payload.name === "year") state.jobDetails.totalExperience.year = payload.value;
+            if (payload.name === "month") state.jobDetails.totalExperience.month = payload.value;
         },
 
     },

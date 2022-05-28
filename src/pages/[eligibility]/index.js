@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { BsCircle } from 'react-icons/bs';
@@ -137,8 +137,8 @@ const Index = () => {
                             {formStepValue === 1 && <>
                                 <form onSubmit={increaseEligibilityStep}>
                                     <FormFirstStep />
-                                    <div className="w-[70%] ml-auto pt-1">
-                                        <button type='submit' className="w-[50%] mx-auto py-3 text-[#696969] my-3 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
+                                    <div className="w-[100%] md:w-[70%] md:ml-auto pt-1 relative">
+                                        <button type='submit' className="bttn"><span className='text-gray hover:text-white'>NEXT</span> <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
                                     </div>
                                 </form>
                             </>}
