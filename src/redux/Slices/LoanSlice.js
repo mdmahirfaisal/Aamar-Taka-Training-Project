@@ -20,6 +20,18 @@ export const loanSlice = createSlice({
             currentExperience: {},
             totalExperience: {},
         },
+        businessDetails: {
+            businessCompanyType: "",
+            businessSharePercents: null,
+            businessCategory: "",
+            businessType: "",
+        },
+        landLordDetails: {
+            tinShedHouse: false,
+            semiPaka: false,
+            buildingWithPlan: false,
+            buildingWithoutPlan: false,
+        }
     },
     reducers: {
         handleLoanType: (state, { payload }) => {
@@ -58,7 +70,7 @@ export const loanSlice = createSlice({
             state.calculatedAge = payload;
         },
 
-        ///////// Job Type Details 
+        ///////// Salaried Type Details 
         handleCompanyName: (state, { payload }) => {
             state.jobDetails.companyName = payload;
         },
@@ -78,10 +90,45 @@ export const loanSlice = createSlice({
             if (payload.name === "month") state.jobDetails.totalExperience.month = payload.value;
         },
 
+        ////////  Business Type Details
+        handleBusinessCompanyType: (state, { payload }) => {
+            state.businessDetails.businessCompanyType = payload;
+        },
+        handleBusinessSharePercents: (state, { payload }) => {
+            if (payload < 100) {
+                state.businessDetails.businessSharePercents = payload;
+            }
+            else {
+                state.businessDetails.businessSharePercents = null;
+            }
+
+        },
+        handleBusinessCategory: (state, { payload }) => {
+            state.businessDetails.businessCategory = payload;
+        },
+        handleBusinessType: (state, { payload }) => {
+            state.businessDetails.businessType = payload;
+        },
+
+        //////// Land lord type type details
+        handleLandLordDetails: (state, { payload }) => {
+            if (payload.name === "tinShed") {
+                state.landLordDetails.tinShedHouse = payload.value;
+            }
+            else if (payload.name === "semiPaka") {
+                state.landLordDetails.semiPaka = payload.value;
+            }
+            else if (payload.name === "withPlan") {
+                state.landLordDetails.buildingWithPlan = payload.value;
+            }
+            else if (payload.name === "withoutPlan") {
+                state.landLordDetails.buildingWithoutPlan = payload.value;
+            }
+        },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { handleLoanType, handleProfessionType, handleLoanPurpose, handleResidenceType, handleCarType, handleGenderType, handleLocation, handleDateOfBirth, handleCalculatedAge, handleCompanyName, handleCompanyType, handleJobStatus, handleCurrentExperience, handleTotalExperience } = loanSlice.actions
+export const { handleLoanType, handleProfessionType, handleLoanPurpose, handleResidenceType, handleCarType, handleGenderType, handleLocation, handleDateOfBirth, handleCalculatedAge, handleCompanyName, handleCompanyType, handleJobStatus, handleCurrentExperience, handleTotalExperience, handleBusinessCompanyType, handleBusinessSharePercents, handleBusinessCategory, handleBusinessType, handleLandLordDetails } = loanSlice.actions
 
 export default loanSlice.reducer

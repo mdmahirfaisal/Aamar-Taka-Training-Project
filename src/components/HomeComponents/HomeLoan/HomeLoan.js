@@ -46,9 +46,8 @@ const HomeLoan = () => {
     return (
         <>
             <NavigationBar />
-            <div className='h-[100%] pb-10 lg:pb-0 lg:min-h-[92vh] bg-[#1b5f8d] grid place-items-center'>
-                <div className="md:min-w-[700px] lg:min-w-[1000px] lg:max-w-[1200px] mx-auto">
-
+            <div className='h-[100%] py-10 lg:py-0 lg:py-[10vw] lg:min-h-[92vh] bg-[#1b5f8d]'>
+                <div className="max-w-[1000px] mx-auto container">
                     <h2 className='text-white text-2xl lg:text-3xl py-5'>We help you to get <span className='font-bold'>Home loan</span> easily</h2>
                     <form onSubmit={handLeHomeLoan} className="bg-[#ffffff34] rounded-lg p-5">
                         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">

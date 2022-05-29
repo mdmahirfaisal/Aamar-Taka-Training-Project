@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomSelectField from '../CustomSelectField/CustomSelectField';
-import { handleCompanyName, handleCompanyType, handleJobStatus, handleCurrentExperience, handleTotalExperience } from '../../../redux/Slices/LoanSlice';
+import { handleCompanyName, handleCompanyType, handleJobStatus, handleCurrentExperience, handleTotalExperience, handleBusinessCompanyType, handleBusinessSharePercents, handleBusinessCategory, handleBusinessType, handleLandLordDetails } from '../../../redux/Slices/LoanSlice';
+import { BsPercent } from 'react-icons/bs';
 
 /// company types options
 const companyTypeOptions = [
@@ -68,37 +69,37 @@ const jobStatusOptions = [
 
 // job experience options
 const yearsOfExperience = [
-    { label: "0 Year", value: 0 },
-    { label: "1 Year", value: 1 },
-    { label: "2 Year", value: 2 },
-    { label: "3 Year", value: 3 },
-    { label: "4 Year", value: 4 },
-    { label: "5 Year", value: 5 },
-    { label: "6 Year", value: 6 },
-    { label: "7 Year", value: 7 },
-    { label: "8 Year", value: 8 },
-    { label: "9 Year", value: 9 },
-    { label: "10 Year", value: 10 },
-    { label: "11 Year", value: 11 },
-    { label: "12 Year", value: 12 },
-    { label: "13 Year", value: 13 },
-    { label: "14 Year", value: 14 },
-    { label: "15 Year", value: 15 },
-    { label: "16 Year", value: 16 },
-    { label: "17 Year", value: 17 },
-    { label: "18 Year", val: 18 },
-    { label: "19 Year", value: 19 },
-    { label: "20 Year", value: 20 },
-    { label: "21 Year", value: 21 },
-    { label: "22 Year", value: 22 },
-    { label: "23 Year", value: 23 },
-    { label: "24 Year", value: 24 },
-    { label: "25 Year", value: 25 },
-    { label: "26 Year", value: 26 },
-    { label: "27 Year", value: 27 },
-    { label: "28 Year", value: 28 },
-    { label: "29 Year", value: 29 },
-    { label: "30 Year", value: 30 },
+    { label: "0 Years", value: 0 },
+    { label: "1 Years", value: 1 },
+    { label: "2 Years", value: 2 },
+    { label: "3 Years", value: 3 },
+    { label: "4 Years", value: 4 },
+    { label: "5 Years", value: 5 },
+    { label: "6 Years", value: 6 },
+    { label: "7 Years", value: 7 },
+    { label: "8 Years", value: 8 },
+    { label: "9 Years", value: 9 },
+    { label: "10 Years", value: 10 },
+    { label: "11 Years", value: 11 },
+    { label: "12 Years", value: 12 },
+    { label: "13 Years", value: 13 },
+    { label: "14 Years", value: 14 },
+    { label: "15 Years", value: 15 },
+    { label: "16 Years", value: 16 },
+    { label: "17 Years", value: 17 },
+    { label: "18 Years", val: 18 },
+    { label: "19 Years", value: 19 },
+    { label: "20 Years", value: 20 },
+    { label: "21 Years", value: 21 },
+    { label: "22 Years", value: 22 },
+    { label: "23 Years", value: 23 },
+    { label: "24 Years", value: 24 },
+    { label: "25 Years", value: 25 },
+    { label: "26 Years", value: 26 },
+    { label: "27 Years", value: 27 },
+    { label: "28 Years", value: 28 },
+    { label: "29 Years", value: 29 },
+    { label: "30 Years", value: 30 },
 ];
 const monthsOfExperience = [
     { label: "1 Month", value: 1 },
@@ -114,14 +115,38 @@ const monthsOfExperience = [
     { label: "11 Month", value: 11 }
 ];
 
+const businessCategoryOptions = [
+    { label: "Plant and Process", value: 1 },
+    { label: "Manufacture", value: 2 },
+    { label: "Importer", value: 3 },
+    { label: "Exporter", value: 4 },
+    { label: "Whole Seller", value: 5 },
+    { label: "Retailer", value: 6 },
+    { label: "Service Sector", value: 7 }
+];
+const businessCompanyTypeOptions = [
+    { label: "Private Ltd.", value: 1 },
+    { label: "Partnership", value: 2 },
+    { label: "Proprietorship", value: 3 }
+];
+
+//// class names 
+const selectHouseInputBoxContainer = "w-full mx-auto relative min-h-[130px] grid place-content-center h-[14vh] border border-gray-200 hover:bg-[#00bef2] text-[#696969] hover:text-white cursor-pointer rounded-md transition-all duration-100";
+const selectHouseInputBoxContainerChecked = "w-full mx-auto relative min-h-[130px] grid place-content-center h-[14vh] bg-[#00bef2] text-white cursor-pointer rounded-md transition-all duration-100";
 
 
 
 const FormSecondStep = () => {
     const dispatch = useDispatch();
-    const { professionType } = useSelector(state => state.loan);
+    const { professionType, landLordDetails, jobDetails, businessDetails } = useSelector(state => state.loan);
+    const { companyName, companyType, jobStatus, currentExperience, totalExperience } = jobDetails;
+    const { businessCompanyType, businessSharePercents, businessCategory, businessType } = businessDetails;
+    const { tinShedHouse, semiPaka, buildingWithPlan, buildingWithoutPlan } = landLordDetails;
+
+
     const [searchText, setSearchText] = useState("");
     const [companyNameOptions, setCompanyNameOptions] = useState([])
+
 
     /// Profession type salaried details control
     const handleInputChange = text => {
@@ -167,66 +192,86 @@ const FormSecondStep = () => {
 
 
     //// profession type land lord control
-    const handleCompanyNames = (value) => {
+    const handleBusinessCompanyTypeChange = (value) => {
         console.log(value);
+        dispatch(handleBusinessCompanyType(value.label))
     }
+    const handleBusinessCategoryChange = (value) => {
+        console.log(value);
+        dispatch(handleBusinessCategory(value.label))
+    }
+    const handleBusinessChange = (value) => {
+        console.log(value);
+        dispatch(handleBusinessType(value.label))
+    }
+
+
+    ////// Share percent input
+    const displayPercentInput = <div className="ml-3 my-3">
+        <div className="md:w-[70%] md:ml-auto">
+            <div className="w-full text-left flex  border border-gray-300">
+                <input onChange={(e) => dispatch(handleBusinessSharePercents(parseInt(e.target.value)))} className='grow pl-2 py-3 bg-white focus:outline-none' type="number" placeholder="Share Portion" defaultValue={businessSharePercents && businessSharePercents} />
+                <div className='flex none w-12 h-12 text-center bg-[#e4e3e3] grid place-items-center'><BsPercent className='text-[#434343] text-[17px]' /> </div>
+            </div>
+        </div>
+    </div>
 
     return (
         <>
             {/* ----- Your Profession type Salaried -----  */}
             {professionType === "Salaried" && <>
                 {/* -- Company Name -- */}
-                <div className="ml-3 my-3 flex items-center">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Company Name</p>
-                    <div className="w-[70%]">
+                <div className="ml-3 my-3 md:flex items-center">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0 '>Company Name</p>
+                    <div className="md:w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyNameChange} placeText={"Start Typing Here..."} isSearchable={true} onInputChange={handleInputChange} />
+                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyNameChange} placeText={companyName ? companyName : "Start Typing Here..."} isSearchable={true} onInputChange={handleInputChange} />
                         </div>
                     </div>
                 </div>
 
                 {/* -- Company Type -- */}
-                <div className="ml-3 my-3 flex items-center">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Company Type</p>
-                    <div className="w-[70%]">
+                <div className="ml-3 my-3 md:flex items-center">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0 '>Company Type</p>
+                    <div className="md:w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyTypeChange} placeText={"Select Your Company Type"} isSearchable={false} />
+                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyTypeChange} placeText={companyType ? companyType : "Select Your Company Type"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
 
                 {/* -- Job Status -- */}
-                <div className="ml-3 my-3 flex items-center">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Job Status</p>
-                    <div className="w-[70%]">
+                <div className="ml-3 my-3 md:flex items-center">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0 '>Job Status</p>
+                    <div className="md:w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={jobStatusOptions} onChange={handleJobStatusChange} placeText={"Select Job Status"} isSearchable={false} />
+                            <CustomSelectField options={jobStatusOptions} onChange={handleJobStatusChange} placeText={jobStatus ? jobStatus : "Select Job Status"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
 
                 {/* -- Current Experience -- */}
-                <div className="ml-3 my-3 flex items-center">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Job Experience (Current)</p>
-                    <div className="w-[70%] grid grid-cols-2 gap-3">
+                <div className="ml-3 my-3 md:flex items-center">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Job Experience (Current)</p>
+                    <div className="md:w-[70%] grid grid-cols-2 gap-3">
                         <div className="w-full text-left">
-                            <CustomSelectField options={yearsOfExperience} onChange={handleCurrentExpYear} placeText={"Select Year"} isSearchable={false} />
+                            <CustomSelectField options={yearsOfExperience} onChange={handleCurrentExpYear} placeText={currentExperience.year ? currentExperience.year : "Select Year"} isSearchable={false} />
                         </div>
                         <div className="w-full text-left">
-                            <CustomSelectField options={monthsOfExperience} onChange={handleCurrentExpMonth} placeText={"Select Month"} isSearchable={false} />
+                            <CustomSelectField options={monthsOfExperience} onChange={handleCurrentExpMonth} placeText={currentExperience.month ? currentExperience.month : "Select Month"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
 
                 {/* -- Total Experience -- */}
-                <div className="ml-3 my-3 flex items-center">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Job Experience (Total)</p>
-                    <div className="w-[70%] grid grid-cols-2 gap-3">
+                <div className="ml-3 my-3 md:flex items-center">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Job Experience (Total)</p>
+                    <div className="md:w-[70%] grid grid-cols-2 gap-3">
                         <div className="w-full text-left">
-                            <CustomSelectField options={yearsOfExperience} onChange={handleTotalExpYear} placeText={"Select Year"} isSearchable={false} />
+                            <CustomSelectField options={yearsOfExperience} onChange={handleTotalExpYear} placeText={totalExperience.year ? totalExperience.year : "Select Year"} isSearchable={false} />
                         </div>
                         <div className="w-full text-left">
-                            <CustomSelectField options={monthsOfExperience} onChange={handleTotalExpMonth} placeText={"Select Month"} isSearchable={false} />
+                            <CustomSelectField options={monthsOfExperience} onChange={handleTotalExpMonth} placeText={totalExperience.month ? totalExperience.month : "Select Month"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
@@ -235,31 +280,33 @@ const FormSecondStep = () => {
             {/* ----- Your Profession type Business man -----  */}
             {professionType === "Business Man" && <>
                 {/* -- Company Type -- */}
-                <div className="ml-3 my-3 flex items-center">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Your Company Type</p>
-                    <div className="w-[70%]">
+                <div className="ml-3 my-3 md:flex items-center">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Your Company Type</p>
+                    <div className="md:w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={jobStatusOptions} onChange={handleCompanyNames} placeText={"Select Type"} isSearchable={false} />
+                            <CustomSelectField options={businessCompanyTypeOptions} onChange={handleBusinessCompanyTypeChange} placeText={businessCompanyType ? businessCompanyType : "Select Type"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
 
-                {/* -- Company Type -- */}
-                <div className="ml-3 my-3 flex items-center">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Your Business Category</p>
-                    <div className="w-[70%]">
+                {businessCompanyType === "Private Ltd." ? displayPercentInput : businessCompanyType === "Partnership" ? displayPercentInput : null}
+
+                {/* -- Company category -- */}
+                <div className="ml-3 my-3 md:flex items-center">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Your Business Category</p>
+                    <div className="md:w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={jobStatusOptions} onChange={handleCompanyNames} placeText={"Select Business Category"} isSearchable={false} />
+                            <CustomSelectField options={businessCategoryOptions} onChange={handleBusinessCategoryChange} placeText={businessCategory ? businessCategory : "Select Business Category"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
 
-                {/* -- Company Type -- */}
-                <div className="ml-3 my-3 flex items-center">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Your Business Type</p>
-                    <div className="w-[70%]">
+                {/* -- business type -- */}
+                <div className="ml-3 my-3 md:flex items-center">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Your Business Type</p>
+                    <div className="md:w-[70%]">
                         <div className="w-full text-left">
-                            <CustomSelectField options={jobStatusOptions} onChange={handleCompanyNames} placeText={"Select Business Type"} isSearchable={false} />
+                            <CustomSelectField options={companyTypeOptions} onChange={handleBusinessChange} placeText={businessType ? businessType : "Select Business Type"} isSearchable={false} />
                         </div>
                     </div>
                 </div>
@@ -268,12 +315,27 @@ const FormSecondStep = () => {
 
             {/* ----- Your Profession type Land lord -----  */}
             {professionType === "Land Lord" && <>
-                <div className="ml-3 my-3 flex gap-5">
-                    <p className='w-[30%] text-[#696969] text-[16px] font-medium text-left '>Please Select Your House Type</p>
-                    <div className="w-[70%] grid grid-cols-2 gap-5">
-                        <div className="w-full mx-auto relative min-h-[100px] grid place-content-center h-[14vh] border hover:bg-[#00bef2] text-[#696969] hover:text-white cursor-pointer rounded-md">
-                            <input type="checkbox" className='absolute top-2 left-2 h-3 w-3 bg-white border' />
+                <div className="ml-3 my-3 md:flex gap-5">
+                    <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0 '>Please Select Your House Type</p>
+                    <div className="md:w-[70%] grid grid-cols-2 gap-5">
+                        <div onClick={() => dispatch(handleLandLordDetails({ name: "tinShed", value: !tinShedHouse }))} className={tinShedHouse ? selectHouseInputBoxContainerChecked : selectHouseInputBoxContainer}>
+                            <input type="checkbox" checked={tinShedHouse} className='absolute top-3 left-3' />
                             <p className='relative text-[15px]'>Tin Shed House</p>
+                        </div>
+
+                        <div onClick={() => dispatch(handleLandLordDetails({ name: "semiPaka", value: !semiPaka }))} className={semiPaka ? selectHouseInputBoxContainerChecked : selectHouseInputBoxContainer}>
+                            <input type="checkbox" checked={semiPaka} className='absolute top-3 left-3' />
+                            <p className='relative text-[15px]'>Semi-Paka</p>
+                        </div>
+
+                        <div onClick={() => dispatch(handleLandLordDetails({ name: "withPlan", value: !buildingWithPlan }))} className={buildingWithPlan ? selectHouseInputBoxContainerChecked : selectHouseInputBoxContainer}>
+                            <input type="checkbox" checked={buildingWithPlan} className='absolute top-3 left-3' />
+                            <p className='relative text-[15px]'>Building With Plan</p>
+                        </div>
+
+                        <div onClick={() => dispatch(handleLandLordDetails({ name: "withoutPlan", value: !buildingWithoutPlan }))} className={buildingWithoutPlan ? selectHouseInputBoxContainerChecked : selectHouseInputBoxContainer}>
+                            <input type="checkbox" checked={buildingWithoutPlan} className='absolute top-3 left-3' />
+                            <p className='relative text-[15px]'>Building Without Plan</p>
                         </div>
                     </div>
                 </div>

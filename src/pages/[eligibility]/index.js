@@ -137,7 +137,7 @@ const Index = () => {
                             {formStepValue === 1 && <>
                                 <form onSubmit={increaseEligibilityStep}>
                                     <FormFirstStep />
-                                    <div className="w-[100%] md:w-[70%] md:ml-auto pt-1 relative">
+                                    <div className="w-[100%] md:w-[70%] md:ml-auto pt-1 relative my-1">
                                         <button type='submit' className="bttn"><span className='text-gray hover:text-white'>NEXT</span> <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
                                     </div>
                                 </form>
@@ -146,13 +146,11 @@ const Index = () => {
                             {formStepValue === 2 && <>
                                 <form onSubmit={increaseEligibilityStep}>
                                     <FormSecondStep />
-                                    <div className="w-[70%] ml-auto">
-                                        <div className="w-[70%] ml-auto">
-                                            <div className="grid grid-cols-2 gap-3 pt-1">
-                                                <button onClick={decreaseEligibilityStep} className="w-[150px] mx-auto  py-3 text-[#696969] my-3 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center"><MdKeyboardArrowLeft className='text-[18px] mt-[2px]' /> BACK</button>
+                                    <div className="md:w-[70%] ml-auto">
+                                        <div className="grid grid-cols-2 pt-1 container">
+                                            <button onClick={decreaseEligibilityStep} className=" py-3 my-3 font-semibold text-[#7a7a7a] bg-[#c7f4ff] flex items-center justify-center"><MdKeyboardArrowLeft className='text-[18px] mt-[2px]' /> BACK</button>
 
-                                                <button type='submit' className="w-[150px] mx-auto py-3 text-[#696969] my-3 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
-                                            </div>
+                                            <button type='submit' className="py-3 my-3 font-semibold text-white bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
                                         </div>
                                     </div>
                                 </form>
@@ -161,13 +159,11 @@ const Index = () => {
                             {formStepValue === 3 && <>
                                 <form onSubmit={increaseEligibilityStep}>
                                     <FormThirdStep />
-                                    <div className="w-[70%] ml-auto">
-                                        <div className="w-[70%] ml-auto">
-                                            <div className="grid grid-cols-2 gap-3 pt-1">
-                                                <button onClick={decreaseEligibilityStep} className="w-[80%] mx-auto  py-3 text-[#696969] my-3 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center"><MdKeyboardArrowLeft className='text-[18px] mt-[2px]' /> BACK</button>
+                                    <div className="md:w-[70%] ml-auto">
+                                        <div className="grid grid-cols-2 pt-1 container">
+                                            <button onClick={decreaseEligibilityStep} className=" py-3 my-3 font-semibold text-[#7a7a7a] bg-[#c7f4ff] flex items-center justify-center"><MdKeyboardArrowLeft className='text-[18px] mt-[2px]' /> BACK</button>
 
-                                                <button type='submit' className="w-[80%] mx-auto py-3 text-[#696969] my-2 rounded-[35px] border border-[#696969] font-semibold hover:text-white transition-all duration-600 hover:bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
-                                            </div>
+                                            <button type='submit' className="py-3 my-3 font-semibold text-white bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
                                         </div>
                                     </div>
                                 </form>
@@ -176,9 +172,11 @@ const Index = () => {
                             {formStepValue === 4 && <>
                                 <form onSubmit={increaseEligibilityStep}>
                                     <FormFourthStep />
-                                    <div className="w-[70%] ml-auto">
-                                        <div className="grid grid-cols-2 gap-3 pt-1">
-                                            <button type='submit' className="w-[50%] mx-auto py-3 text-[#696969] my-3 rounded-[35px] border border-[#696969] font-semibold text-white bg-[#0ab9f2] flex items-center justify-center">Submit <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
+                                    <div className="md:w-[70%] ml-auto">
+                                        <div className="grid grid-cols-2 pt-1 container">
+                                            <button onClick={decreaseEligibilityStep} className=" py-3 my-3 font-semibold text-[#7a7a7a] bg-[#c7f4ff] flex items-center justify-center"><MdKeyboardArrowLeft className='text-[18px] mt-[2px]' /> BACK</button>
+
+                                            <button type='submit' className="py-3 my-3 font-semibold text-white bg-[#0ab9f2] flex items-center justify-center">NEXT <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
                                         </div>
                                     </div>
                                 </form>
@@ -187,7 +185,7 @@ const Index = () => {
 
                         {/* ------- Right side display data -------  */}
                         <div className="col-span-5 md:col-span-2 bg-[#effaff] rounded-lg p-2">
-                            <DisplayFilterData productType={productType} />
+                            <DisplayFilterData productType={productType} formStepValue={formStepValue} />
                         </div>
                     </div>
                 </div>
