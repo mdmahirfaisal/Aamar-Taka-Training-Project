@@ -41,7 +41,7 @@ const CarLoan = () => {
                 <div className="max-w-[1000px] mx-auto container">
 
                     <h2 className='text-white text-2xl lg:text-3xl py-5'>We help you to get <span className='font-bold'>Car loan</span> easily</h2>
-                    <form onSubmit={handLeCarLoan} className="bg-[#ffffff34] rounded-lg p-5">
+                    <form onSubmit={handLeCarLoan} className="bg-[#ffffff34] rounded-lg p-2 md:p-5">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 ">
 
                             {/* Select Car Type */}
@@ -59,8 +59,8 @@ const CarLoan = () => {
                         </div>
 
                         <div className="grid grid-cols-2 gap-3 w-full py-4 ">
-                            <input type="submit" className='loanButton hover:text-white bg-[#f4ca1f] rounded-md text-gray-900 text-lg font-medium py-2 block w-[100%] mx-auto cursor-pointer' value="COMPARE RATE" />
-                            <input type="submit" className='loanButton bg-[#3abaf4] rounded-md text-gray-100 text-lg font-medium py-2 block w-[100%] mx-auto cursor-pointer' value="CHECK ELIGIBILITY" />
+                            <input type="submit" className='loanButton hover:text-white bg-[#f4ca1f] rounded-md text-gray-900 text-lg font-medium px-1 py-2 block w-[100%] mx-auto cursor-pointer' value="COMPARE RATE" />
+                            <input type="submit" className='loanButton bg-[#3abaf4] rounded-md text-gray-100 text-lg font-medium px-1 py-2 block w-[100%] mx-auto cursor-pointer' value="CHECK ELIGIBILITY" />
                         </div>
                     </form>
                 </div>
