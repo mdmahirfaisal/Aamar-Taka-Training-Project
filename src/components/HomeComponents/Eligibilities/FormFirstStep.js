@@ -55,17 +55,17 @@ const FormFirstStep = ({ register, errors }) => {
             <div className="ml-3 my-3 flex items-center">
                 <p className='hidden md:block md:w-[30%] text-[#696969] text-[16px] font-medium text-left '>Gender</p>
                 <div className="w-[100%] md:w-[70%] grid grid-cols-3">
-                    <div className={errors.gender ? inputContainerClassNameError : inputContainerClassName}>
-                        <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="newLoan" {...register("gender", { required: true })} defaultChecked={genderType === "Male" && genderType} value="Male" />
-                        <label className='cursor-pointer' htmlFor="newLoan">Male</label>
+                    <div className={inputContainerClassName}>
+                        <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="maleGender" checked={genderType === "Male" && genderType} required value="Male" name="gender" />
+                        <label className='cursor-pointer' htmlFor="maleGender">Male</label>
                     </div>
-                    <div className={errors.gender ? inputContainerClassNameError : inputContainerClassName}>
-                        <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="takeOver" {...register("gender", { required: true })} defaultChecked={genderType === "Female" && genderType} value="Female" />
-                        <label className='cursor-pointer' htmlFor="takeOver">Female</label>
+                    <div className={inputContainerClassName}>
+                        <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="femaleGender" checked={genderType === "Female" && genderType} required value="Female" name="gender" />
+                        <label className='cursor-pointer' htmlFor="femaleGender">Female</label>
                     </div>
-                    <div className={errors.gender ? inputContainerClassNameError : inputContainerClassName}>
-                        <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="topUp" {...register("gender", { required: true })} defaultChecked={genderType === "Other" && genderType} value="Other" />
-                        <label className='cursor-pointer' htmlFor="topUp">Other</label>
+                    <div className={inputContainerClassName}>
+                        <input onChange={(e) => dispatch(handleGenderType(e.target.value))} type="radio" id="othersGender" checked={genderType === "Other" && genderType} required value="Other" name="gender" />
+                        <label className='cursor-pointer' htmlFor="othersGender">Other</label>
                     </div>
                 </div>
             </div>
