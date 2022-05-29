@@ -4,7 +4,6 @@ import Select from 'react-select';
 
 const CustomSelectField = ({ options, onChange, placeText, isSearchable, onInputChange, required }) => {
 
-
     const customStyle = {
         control: (provided, state) => ({
             ...provided,
@@ -39,7 +38,7 @@ const CustomSelectField = ({ options, onChange, placeText, isSearchable, onInput
         onChange={onChange}
         onInputChange={onInputChange}
         maxMenuHeight={200}
-        isRequired={true}
+        isRequired={required}
         options={options}
     />;
 };

@@ -106,8 +106,12 @@ const yearValues = [
     { label: 2010, value: 2010 }
 ];
 
+// class names 
+const selectContainerClassName = "w-full relative text-left";
+const selectContainerClassNameError = "w-full relative text-left border border-red-500 rounded-md";
 
-const DateOfBirthFilter = () => {
+
+const DateOfBirthFilter = ({ register, errors }) => {
     const dispatch = useDispatch();
     const { dateOfBirth } = useSelector(state => state.loan);
 
@@ -158,14 +162,14 @@ const DateOfBirthFilter = () => {
         <div className="ml-3 my-3 md:flex items-center">
             <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Date of Birth</p>
             <div className="md:w-[70%] grid grid-cols-3">
-                <div className="w-full relative text-left">
-                    <CustomSelectField options={dayValues} onChange={handleDayChange} placeText={dateOfBirth.day || "Day"} isSearchable={false} />
+                <div className={errors.daySelect ? selectContainerClassNameError : selectContainerClassName}>
+                    <CustomSelectField options={dayValues} onChange={handleDayChange} placeText={dateOfBirth.day || "Day"} isSearchable={false} required={{ ...register("daySelect", { required: dateOfBirth.day ? false : true }) }} />
                 </div>
-                <div className="w-full relative text-left">
-                    <CustomSelectField options={monthValues} onChange={handleMonthChange} placeText={dateOfBirth.month?.label || "Month"} isSearchable={false} />
+                <div className={errors.monthSelect ? selectContainerClassNameError : selectContainerClassName}>
+                    <CustomSelectField options={monthValues} onChange={handleMonthChange} placeText={dateOfBirth.month?.label || "Month"} isSearchable={false} required={{ ...register("monthSelect", { required: dateOfBirth.month?.label ? false : true }) }} />
                 </div>
-                <div className="w-full relative text-left">
-                    <CustomSelectField options={yearValues} onChange={handleYearChange} placeText={dateOfBirth.year || "Year"} isSearchable={false} />
+                <div className={errors.yearSelect ? selectContainerClassNameError : selectContainerClassName}>
+                    <CustomSelectField options={yearValues} onChange={handleYearChange} placeText={dateOfBirth.year || "Year"} isSearchable={false} required={{ ...register("yearSelect", { required: dateOfBirth.year ? false : true }) }} />
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ import FormFirstStep from '../../components/HomeComponents/Eligibilities/FormFir
 import FormSecondStep from '../../components/HomeComponents/Eligibilities/FormSecondStep';
 import FormThirdStep from '../../components/HomeComponents/Eligibilities/FormThirdStep';
 import FormFourthStep from '../../components/HomeComponents/Eligibilities/FormFourthStep';
+import { useForm } from 'react-hook-form';
 
 
 //// Class names control ////
@@ -23,6 +24,7 @@ const stepsDoneBorderClassNames = 'grow border-b-[3px] border-[#0ab9f2]';
 
 
 const Index = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const router = useRouter();
     const eligibility = router?.query?.eligibility
 
@@ -49,13 +51,12 @@ const Index = () => {
     ///////// Eligibility Step controls 
     const [formStepValue, setFormStepValue] = useState(1);
 
-    const increaseEligibilityStep = (e) => {
+    const increaseEligibilityStep = () => {
         if (formStepValue === 4) {
             alert("this form submit completed")
         } else {
             setFormStepValue(formStepValue + 1 > 4 ? 4 : formStepValue + 1);
         }
-        e.preventDefault();
     };
     const decreaseEligibilityStep = () => {
         setFormStepValue(formStepValue - 1 < 1 ? 1 : formStepValue - 1);
@@ -135,8 +136,8 @@ const Index = () => {
 
                             {/* ----- First Step -----  */}
                             {formStepValue === 1 && <>
-                                <form onSubmit={increaseEligibilityStep}>
-                                    <FormFirstStep />
+                                <form onSubmit={handleSubmit(increaseEligibilityStep)}>
+                                    <FormFirstStep register={register} errors={errors} />
                                     <div className="w-[100%] md:w-[70%] md:ml-auto pt-1 relative my-1">
                                         <button type='submit' className="bttn"><span className='text-gray hover:text-white'>NEXT</span> <RiArrowRightSLine className='text-[18px] mt-[2px]' /></button>
                                     </div>
@@ -144,8 +145,8 @@ const Index = () => {
                             </>}
                             {/* ----- Second Step -----  */}
                             {formStepValue === 2 && <>
-                                <form onSubmit={increaseEligibilityStep}>
-                                    <FormSecondStep />
+                                <form onSubmit={handleSubmit(increaseEligibilityStep)}>
+                                    <FormSecondStep register={register} errors={errors} />
                                     <div className="md:w-[70%] ml-auto">
                                         <div className="grid grid-cols-2 pt-1 container">
                                             <button onClick={decreaseEligibilityStep} className=" py-3 my-3 font-semibold text-[#7a7a7a] bg-[#c7f4ff] flex items-center justify-center"><MdKeyboardArrowLeft className='text-[18px] mt-[2px]' /> BACK</button>
@@ -157,7 +158,7 @@ const Index = () => {
                             </>}
                             {/* ----- Third Step -----  */}
                             {formStepValue === 3 && <>
-                                <form onSubmit={increaseEligibilityStep}>
+                                <form onSubmit={handleSubmit(increaseEligibilityStep)}>
                                     <FormThirdStep />
                                     <div className="md:w-[70%] ml-auto">
                                         <div className="grid grid-cols-2 pt-1 container">
@@ -170,7 +171,7 @@ const Index = () => {
                             </>}
                             {/* ----- Fourth Step -----  */}
                             {formStepValue === 4 && <>
-                                <form onSubmit={increaseEligibilityStep}>
+                                <form onSubmit={handleSubmit(increaseEligibilityStep)}>
                                     <FormFourthStep />
                                     <div className="md:w-[70%] ml-auto">
                                         <div className="grid grid-cols-2 pt-1 container">

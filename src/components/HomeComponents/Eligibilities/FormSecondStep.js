@@ -134,9 +134,11 @@ const businessCompanyTypeOptions = [
 const selectHouseInputBoxContainer = "w-full mx-auto relative min-h-[130px] grid place-content-center h-[14vh] border border-gray-200 hover:bg-[#00bef2] text-[#696969] hover:text-white cursor-pointer rounded-md transition-all duration-100";
 const selectHouseInputBoxContainerChecked = "w-full mx-auto relative min-h-[130px] grid place-content-center h-[14vh] bg-[#00bef2] text-white cursor-pointer rounded-md transition-all duration-100";
 
+const selectContainerClassName = "w-full relative text-left";
+const selectContainerClassNameError = "w-full relative text-left border border-red-500 rounded-md";
 
 
-const FormSecondStep = () => {
+const FormSecondStep = ({ register, errors }) => {
     const dispatch = useDispatch();
     const { professionType, landLordDetails, jobDetails, businessDetails } = useSelector(state => state.loan);
     const { companyName, companyType, jobStatus, currentExperience, totalExperience } = jobDetails;
@@ -164,15 +166,12 @@ const FormSecondStep = () => {
     }, [searchText])
 
     const handleCompanyNameChange = value => {
-        console.log(value);
         dispatch(handleCompanyName(value.label))
     };
     const handleCompanyTypeChange = value => {
-        console.log(value);
         dispatch(handleCompanyType(value.label))
     };
     const handleJobStatusChange = value => {
-        console.log(value);
         dispatch(handleJobStatus(value.label))
     };
     const handleCurrentExpYear = value => {
@@ -209,8 +208,8 @@ const FormSecondStep = () => {
     ////// Share percent input
     const displayPercentInput = <div className="ml-3 my-3">
         <div className="md:w-[70%] md:ml-auto">
-            <div className="w-full text-left flex  border border-gray-300">
-                <input onChange={(e) => dispatch(handleBusinessSharePercents(parseInt(e.target.value)))} className='grow pl-2 py-3 bg-white focus:outline-none' type="number" placeholder="Share Portion" defaultValue={businessSharePercents && businessSharePercents} />
+            <div className={errors.sharePercentSelect ? "w-full text-left flex border border-red-500 rounded-md" : "w-full text-left flex border border-gray-300"}>
+                <input onChange={(e) => dispatch(handleBusinessSharePercents(parseInt(e.target.value)))} {...register("sharePercentSelect", { required: businessSharePercents ? false : true })} className='grow pl-2 py-3 bg-white focus:outline-none' type="number" placeholder="Share Portion" defaultValue={businessSharePercents && businessSharePercents} />
                 <div className='flex none w-12 h-12 text-center bg-[#e4e3e3] grid place-items-center'><BsPercent className='text-[#434343] text-[17px]' /> </div>
             </div>
         </div>
@@ -224,8 +223,8 @@ const FormSecondStep = () => {
                 <div className="ml-3 my-3 md:flex items-center">
                     <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0 '>Company Name</p>
                     <div className="md:w-[70%]">
-                        <div className="w-full text-left">
-                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyNameChange} placeText={companyName ? companyName : "Start Typing Here..."} isSearchable={true} onInputChange={handleInputChange} />
+                        <div className={errors.companyNameSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyNameChange} placeText={companyName ? companyName : "Start Typing Here..."} isSearchable={true} onInputChange={handleInputChange} required={{ ...register("companyNameSelect", { required: companyName ? false : true }) }} />
                         </div>
                     </div>
                 </div>
@@ -234,8 +233,8 @@ const FormSecondStep = () => {
                 <div className="ml-3 my-3 md:flex items-center">
                     <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0 '>Company Type</p>
                     <div className="md:w-[70%]">
-                        <div className="w-full text-left">
-                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyTypeChange} placeText={companyType ? companyType : "Select Your Company Type"} isSearchable={false} />
+                        <div className={errors.companyTypeSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={companyTypeOptions} onChange={handleCompanyTypeChange} placeText={companyType ? companyType : "Select Your Company Type"} isSearchable={false} required={{ ...register("companyTypeSelect", { required: companyType ? false : true }) }} />
                         </div>
                     </div>
                 </div>
@@ -244,8 +243,8 @@ const FormSecondStep = () => {
                 <div className="ml-3 my-3 md:flex items-center">
                     <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0 '>Job Status</p>
                     <div className="md:w-[70%]">
-                        <div className="w-full text-left">
-                            <CustomSelectField options={jobStatusOptions} onChange={handleJobStatusChange} placeText={jobStatus ? jobStatus : "Select Job Status"} isSearchable={false} />
+                        <div className={errors.jobStatusSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={jobStatusOptions} onChange={handleJobStatusChange} placeText={jobStatus ? jobStatus : "Select Job Status"} isSearchable={false} required={{ ...register("jobStatusSelect", { required: jobStatus ? false : true }) }} />
                         </div>
                     </div>
                 </div>
@@ -254,11 +253,11 @@ const FormSecondStep = () => {
                 <div className="ml-3 my-3 md:flex items-center">
                     <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Job Experience (Current)</p>
                     <div className="md:w-[70%] grid grid-cols-2 gap-3">
-                        <div className="w-full text-left">
-                            <CustomSelectField options={yearsOfExperience} onChange={handleCurrentExpYear} placeText={currentExperience.year ? currentExperience.year : "Select Year"} isSearchable={false} />
+                        <div className={errors.currentYearSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={yearsOfExperience} onChange={handleCurrentExpYear} placeText={currentExperience.year ? currentExperience.year : "Select Year"} isSearchable={false} required={{ ...register("currentYearSelect", { required: currentExperience.year ? false : true }) }} />
                         </div>
-                        <div className="w-full text-left">
-                            <CustomSelectField options={monthsOfExperience} onChange={handleCurrentExpMonth} placeText={currentExperience.month ? currentExperience.month : "Select Month"} isSearchable={false} />
+                        <div className={errors.currentMonthSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={monthsOfExperience} onChange={handleCurrentExpMonth} placeText={currentExperience.month ? currentExperience.month : "Select Month"} isSearchable={false} required={{ ...register("currentMonthSelect", { required: currentExperience.month ? false : true }) }} />
                         </div>
                     </div>
                 </div>
@@ -267,11 +266,11 @@ const FormSecondStep = () => {
                 <div className="ml-3 my-3 md:flex items-center">
                     <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Job Experience (Total)</p>
                     <div className="md:w-[70%] grid grid-cols-2 gap-3">
-                        <div className="w-full text-left">
-                            <CustomSelectField options={yearsOfExperience} onChange={handleTotalExpYear} placeText={totalExperience.year ? totalExperience.year : "Select Year"} isSearchable={false} />
+                        <div className={errors.totalYearSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={yearsOfExperience} onChange={handleTotalExpYear} placeText={totalExperience.year ? totalExperience.year : "Select Year"} isSearchable={false} required={{ ...register("totalYearSelect", { required: totalExperience.year ? false : true }) }} />
                         </div>
-                        <div className="w-full text-left">
-                            <CustomSelectField options={monthsOfExperience} onChange={handleTotalExpMonth} placeText={totalExperience.month ? totalExperience.month : "Select Month"} isSearchable={false} />
+                        <div className={errors.totalMonthSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={monthsOfExperience} onChange={handleTotalExpMonth} placeText={totalExperience.month ? totalExperience.month : "Select Month"} isSearchable={false} required={{ ...register("totalMonthSelect", { required: totalExperience.month ? false : true }) }} />
                         </div>
                     </div>
                 </div>
@@ -283,8 +282,8 @@ const FormSecondStep = () => {
                 <div className="ml-3 my-3 md:flex items-center">
                     <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Your Company Type</p>
                     <div className="md:w-[70%]">
-                        <div className="w-full text-left">
-                            <CustomSelectField options={businessCompanyTypeOptions} onChange={handleBusinessCompanyTypeChange} placeText={businessCompanyType ? businessCompanyType : "Select Type"} isSearchable={false} />
+                        <div className={errors.businessCompanyTypeSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={businessCompanyTypeOptions} onChange={handleBusinessCompanyTypeChange} placeText={businessCompanyType ? businessCompanyType : "Select Type"} isSearchable={false} required={{ ...register("businessCompanyTypeSelect", { required: businessCompanyType ? false : true }) }} />
                         </div>
                     </div>
                 </div>
@@ -295,8 +294,8 @@ const FormSecondStep = () => {
                 <div className="ml-3 my-3 md:flex items-center">
                     <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Your Business Category</p>
                     <div className="md:w-[70%]">
-                        <div className="w-full text-left">
-                            <CustomSelectField options={businessCategoryOptions} onChange={handleBusinessCategoryChange} placeText={businessCategory ? businessCategory : "Select Business Category"} isSearchable={false} />
+                        <div className={errors.businessCtgSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={businessCategoryOptions} onChange={handleBusinessCategoryChange} placeText={businessCategory ? businessCategory : "Select Business Category"} isSearchable={false} required={{ ...register("businessCtgSelect", { required: businessCategory ? false : true }) }} />
                         </div>
                     </div>
                 </div>
@@ -305,8 +304,8 @@ const FormSecondStep = () => {
                 <div className="ml-3 my-3 md:flex items-center">
                     <p className='md:w-[30%] text-[#696969] text-[16px] font-medium text-left mb-1 md:mb-0'>Your Business Type</p>
                     <div className="md:w-[70%]">
-                        <div className="w-full text-left">
-                            <CustomSelectField options={companyTypeOptions} onChange={handleBusinessChange} placeText={businessType ? businessType : "Select Business Type"} isSearchable={false} />
+                        <div className={errors.businessTypeSelect ? selectContainerClassNameError : selectContainerClassName}>
+                            <CustomSelectField options={companyTypeOptions} onChange={handleBusinessChange} placeText={businessType ? businessType : "Select Business Type"} isSearchable={false} required={{ ...register("businessTypeSelect", { required: businessType ? false : true }) }} />
                         </div>
                     </div>
                 </div>

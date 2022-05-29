@@ -1,11 +1,11 @@
 import React from 'react';
 import NavigationBar from '../../SharedComponents/NavigationBar/NavigationBar';
 import Footer from '../../SharedComponents/Footer/Footer';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { handleProfessionType, handleCarType } from '../../../redux/Slices/LoanSlice';
 import { useRouter } from 'next/router';
 import CustomSelectField from '../CustomSelectField/CustomSelectField';
+import { useForm } from 'react-hook-form';
 
 const professionOption = [
     { label: 'Salaried', value: 'Salaried' },
@@ -18,12 +18,17 @@ const carTypeOption = [
     { label: 'Recondition Car', value: 'Recondition Car' }
 ];
 
+//////// Class names 
+const selectContainer = "w-full relative text-left";
+const selectContainerError = "w-full relative text-left border border-red-500 rounded-md";
+
 const CarLoan = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const dispatch = useDispatch();
+    const { professionType, carType } = useSelector(state => state.loan);
     const router = useRouter();
 
-    const handLeCarLoan = (e) => {
-        e.preventDefault();
+    const handLeCarLoan = () => {
         router.push('/car-loan-eligibility')
     }
 
@@ -41,19 +46,19 @@ const CarLoan = () => {
                 <div className="max-w-[1000px] mx-auto container">
 
                     <h2 className='text-white text-2xl lg:text-3xl py-5'>We help you to get <span className='font-bold'>Car loan</span> easily</h2>
-                    <form onSubmit={handLeCarLoan} className="bg-[#ffffff34] rounded-lg p-2 md:p-5">
+                    <form onSubmit={handleSubmit(handLeCarLoan)} className="bg-[#ffffff34] rounded-lg p-2 md:p-5">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 ">
 
                             {/* Select Car Type */}
                             <div >
-                                <div className="w-full relative text-left">
-                                    <CustomSelectField options={carTypeOption} onChange={handleCarTypeChange} placeText={"Select Car Type"} isSearchable={false} />
+                                <div className={errors.carSelect ? selectContainerError : selectContainer}>
+                                    <CustomSelectField options={carTypeOption} onChange={handleCarTypeChange} placeText={"Select Car Type"} isSearchable={false} required={{ ...register("carSelect", { required: carType ? false : true }) }} />
                                 </div>
                             </div>
                             {/* Select Your Profession  */}
                             <div >
-                                <div className="w-full relative text-left">
-                                    <CustomSelectField options={professionOption} onChange={handleProfessionChange} placeText={"Select Your Profession"} isSearchable={false} />
+                                <div className={errors.professionSelect ? selectContainerError : selectContainer}>
+                                    <CustomSelectField options={professionOption} onChange={handleProfessionChange} placeText={"Select Your Profession"} isSearchable={false} required={{ ...register("professionSelect", { required: professionType ? false : true }) }} />
                                 </div>
                             </div>
                         </div>
