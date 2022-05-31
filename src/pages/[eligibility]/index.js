@@ -146,7 +146,7 @@ const Index = () => {
                             {/* ----- Second Step -----  */}
                             {formStepValue === 2 && <>
                                 <form onSubmit={handleSubmit(increaseEligibilityStep)}>
-                                    <FormSecondStep register={register} errors={errors} />
+                                    <FormSecondStep formStepValue={formStepValue} register={register} errors={errors} />
                                     <div className="md:w-[70%] ml-auto">
                                         <div className="grid grid-cols-2 pt-1 container">
                                             <button onClick={decreaseEligibilityStep} className=" py-3 my-3 font-semibold text-[#7a7a7a] bg-[#c7f4ff] flex items-center justify-center"><MdKeyboardArrowLeft className='text-[18px] mt-[2px]' /> BACK</button>

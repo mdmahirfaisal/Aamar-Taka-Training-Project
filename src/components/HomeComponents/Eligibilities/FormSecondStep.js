@@ -138,7 +138,7 @@ const selectContainerClassName = "w-full relative text-left";
 const selectContainerClassNameError = "w-full relative text-left border border-red-500 rounded-md";
 
 
-const FormSecondStep = ({ register, errors }) => {
+const FormSecondStep = ({ formStepValue, register, errors }) => {
     const dispatch = useDispatch();
     const { professionType, landLordDetails, jobDetails, businessDetails } = useSelector(state => state.loan);
     const { companyName, companyType, jobStatus, currentExperience, totalExperience } = jobDetails;
@@ -195,6 +195,10 @@ const FormSecondStep = ({ register, errors }) => {
         console.log(value);
         dispatch(handleBusinessCompanyType(value.label))
     }
+
+    const handleSharePercentChange = () => {
+
+    }
     const handleBusinessCategoryChange = (value) => {
         console.log(value);
         dispatch(handleBusinessCategory(value.label))
@@ -203,6 +207,7 @@ const FormSecondStep = ({ register, errors }) => {
         console.log(value);
         dispatch(handleBusinessType(value.label))
     }
+
 
     return (
         <>
